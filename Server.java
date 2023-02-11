@@ -31,7 +31,6 @@ public class Server {
 	}
 
 	public static ResultSet query(String query) throws SQLException {
-		Statement statement = Server.connection().createStatement();
-		return statement.executeQuery(query);
+		return Server.connection().createStatement().executeQuery(query);
 	}
 }
