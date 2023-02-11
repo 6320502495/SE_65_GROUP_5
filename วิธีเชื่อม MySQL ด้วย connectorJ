@@ -1,0 +1,9 @@
+วิธีการเชื่อมต่อ MySQL ด้วย connector/J (ต่อกับภาษา Java)
+
+คลิกไปที่โปรเจกต์ > properties > Java Build Path
+> Libraries > Classpath > Add External JARs...
+> เลือก mysql-connector-j-8.0.32.jar > Apply and Close
+โดยที่ mysql-connector-j-8.0.32.jar สามารถโหลดได้จากข้างล่างนี้
+https://drive.google.com/file/d/1ykqm0-ekGm5bVwya9ewqmBtyud4-1OOF/view?usp=share_link
+(Path ของ mysql-connector-j-8.0.32.jar จะต้องห้ามเปลี่ยนแปลง
+มิฉะนั้นจะเกิดปัญหาขึ้นในภายหลังนะ)
