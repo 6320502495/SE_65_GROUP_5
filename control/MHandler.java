@@ -201,7 +201,7 @@ public class MHandler {
 		kdTreeCurrentLatest = kdTreeCurrent;
 		kdTreeCurrent = new ArrayList<Sprite>();
 		runObjects = mObjects;
-		if (runnings.get(0) == true) {
+		if (runnings.get(0)) {
 			for (MObject o : runObjects.get(0))
 				o.loop(g);
 			int x = MouseInfo.getPointerInfo().getLocation().x / KDTREE_WIDTH;
@@ -212,7 +212,7 @@ public class MHandler {
 			}
 		}
 		for (int i = 2; i < runObjects.size(); i++) {
-			if (runnings.get(i) == true) {
+			if (runnings.get(i)) {
 				for (MObject o : runObjects.get(i))
 					o.loop(g);
 				int x = MouseInfo.getPointerInfo().getLocation().x / KDTREE_WIDTH;
@@ -223,7 +223,7 @@ public class MHandler {
 				}
 			}
 		}
-		if (runnings.get(1) == true) {
+		if (runnings.get(1)) {
 			for (MObject o : runObjects.get(1))
 				o.loop(g);
 			int x = MouseInfo.getPointerInfo().getLocation().x / KDTREE_WIDTH;
