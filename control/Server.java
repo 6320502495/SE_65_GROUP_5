@@ -30,7 +30,12 @@ public class Server {
 		connection.close();
 	}
 
+	public static boolean execute(String query) throws SQLException {
+		return connection.createStatement().execute(query);
+	}
+
+
 	public static ResultSet query(String query) throws SQLException {
-		return Server.connection().createStatement().executeQuery(query);
+		return connection.createStatement().executeQuery(query);
 	}
 }
