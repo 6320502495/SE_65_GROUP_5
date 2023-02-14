@@ -41,7 +41,6 @@ public class TextInputBox extends MObject {
 		if (font == null)
 			throw new IllegalArgumentException("font cannot be null");
 		mButton = new MButton(mGroup, point, figure, images, false, false) {
-			private String[] images;
 			private BufferedImage[] bufferedImages = new BufferedImage[8];
 
 			public void setImages(String[] images) throws IOException {
