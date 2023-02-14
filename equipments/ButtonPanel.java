@@ -50,6 +50,15 @@ public class ButtonPanel {
 		connectedButtons.add(mButton);
 		mButton.buttonPanel = this;
 	}
+	
+	public final void connect(TextInputBox textInputBox) {
+		if (textInputBox == null)
+			throw new IllegalArgumentException("textInputBox cannot be null");
+		if (connectedButtons.contains(textInputBox.mButton()))
+			throw new IllegalArgumentException("Cannot connect duplicated textInputBox");
+		connectedButtons.add(textInputBox.mButton());
+		textInputBox.mButton().buttonPanel = this;
+	}
 
 	public final void refresh(MButton mButton) {
 		if (mButton == null)
