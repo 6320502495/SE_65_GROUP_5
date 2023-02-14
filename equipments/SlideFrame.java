@@ -35,17 +35,21 @@ public class SlideFrame extends MObject {
 	private Point lastPoint = new Point(0, 0);
 	private Point relativePoint = new Point(0, 0);
 	private boolean saved = true;
+	public boolean draggable = false;
 
 	public SlideFrame(MGroup groups) {
 		super(groups);
 		mFrame = new MFrame(groups, new Point(0, 0),
-				new Figure(FigureShape.RECTANGLE, new int[] { MPainter.WIDTH, MPainter.HEIGHT }), true, false,
+				new Figure(FigureShape.RECTANGLE, new int[] { MPainter.WIDTH, MPainter.HEIGHT }), false, false,
 				MovableDirection.FREE);
 		MHandler.add(mFrame);
 	}
 
 	@Override
 	public final void loop(Graphics g) {
+		mFrame.draggable = draggable;
+		if (!draggable)
+			return;
 		point.x = lastPoint.x + relativePoint.x;
 		point.y = lastPoint.y + relativePoint.y;
 		if (mFrame.isDragged()) {
