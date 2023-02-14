@@ -64,7 +64,7 @@ public class Server {
 			buff = new byte[16777215];
 			break;
 		case LONG:
-			buff = new byte[1048576 * 4194304];
+			buff = new byte[1048576 * 4194304 - 1];
 			break;
 		}
 		int len = 0;
