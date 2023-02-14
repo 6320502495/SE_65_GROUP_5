@@ -17,11 +17,11 @@ public class MFrame extends Sprite implements KDTree {
 
 	private Figure figure;
 
-	public Figure figure() {
+	public final Figure figure() {
 		return figure;
 	}
 
-	public void setFigure(Figure figure) {
+	public final void setFigure(Figure figure) {
 		if (figure == null)
 			throw new IllegalArgumentException();
 		this.figure = figure;
@@ -49,12 +49,12 @@ public class MFrame extends Sprite implements KDTree {
 		this.movableDirection = movableDirection;
 	}
 	
-	public void bounceX(int before, int after) {
+	public final void bounceX(int before, int after) {
 		relativePoint.x += before - after;
 		this.point.x = after;
 	}
 	
-	public void bounceY(int before, int after) {
+	public final void bounceY(int before, int after) {
 		relativePoint.y += before - after;
 		this.point.y = after;
 	}
