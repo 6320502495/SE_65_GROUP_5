@@ -68,9 +68,8 @@ public class Server {
 			break;
 		}
 		int len = 0;
-		while ((len = in.read(buff)) != -1) {
+		while ((len = in.read(buff)) != -1)
 			out.write(buff, 0, len);
-		}
 		out.close();
 		return new File(MPainter.imagePath() + saveName);
 	}
