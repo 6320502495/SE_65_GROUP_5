@@ -102,7 +102,7 @@ public class TextInputBox extends MObject {
 	}
 
 	public void check() {
-		legal = textInputter.read().length() >= 5;
+		// anything
 	}
 
 	@Override
