@@ -18,6 +18,11 @@ import stage.Script.MGroup;
 
 public class TextInputBox extends MObject {
 	private MButton mButton;
+	
+	public MButton mButton() {
+		return mButton;
+	}
+	
 	private TextInputter textInputter;
 	private Point offset;
 	private Color color;
