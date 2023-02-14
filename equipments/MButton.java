@@ -3,7 +3,9 @@ package equipments;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
@@ -23,41 +25,17 @@ public class MButton extends Sprite {
 		return images;
 	}
 
-	public void setImages(String[] images) {
+	private final BufferedImage[] bufferedImages = new BufferedImage[4];
+
+	public void setImages(String[] images) throws IOException {
 		if (images.length != 4)
 			throw new IllegalArgumentException("images's length must be 4");
 		for (int i = 0; i < 4; i++)
 			if (images[i] == null)
 				throw new IllegalArgumentException("images cannot be null");
 		this.images = images;
-	}
-
-	public final SetImages setImages = new SetImages();
-
-	public final class SetImages {
-		public final void untouchedUntriggered(String image) {
-			if (image == null)
-				throw new IllegalArgumentException("image cannot be null");
-			images[0] = image;
-		}
-
-		public final void touchedUntriggered(String image) {
-			if (image == null)
-				throw new IllegalArgumentException("image cannot be null");
-			images[1] = image;
-		}
-
-		public final void untouchedTriggered(String image) {
-			if (image == null)
-				throw new IllegalArgumentException("image cannot be null");
-			images[2] = image;
-		}
-
-		public final void touchedTriggered(String image) {
-			if (image == null)
-				throw new IllegalArgumentException("image cannot be null");
-			images[3] = image;
-		}
+		for (int i = 0; i < 4; i++)
+			bufferedImages[i] = ImageIO.read(new File(MPainter.imagePath() + images[i]));
 	}
 
 	public boolean triggerable = false;
@@ -68,8 +46,8 @@ public class MButton extends Sprite {
 
 	protected boolean refreshingNeed = false;
 
-	public MButton(MGroup mGroup, Point point, Figure figure, String[] images, boolean triggerable,
-			boolean triggered) {
+	public MButton(MGroup mGroup, Point point, Figure figure, String[] images, boolean triggerable, boolean triggered)
+			throws IOException {
 		super(mGroup, point, figure.dimension());
 		setImages(images);
 		mFrame = new MFrame(mGroup, point, figure, false, false, MovableDirection.FREE) {
@@ -98,17 +76,13 @@ public class MButton extends Sprite {
 		try {
 			if (mFrame.isTouched())
 				if (triggered)
-					g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[3])), mFrame.point().x,
-							mFrame.point().y, null);
+					g.drawImage(bufferedImages[3], mFrame.point().x, mFrame.point().y, null);
 				else
-					g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[1])), mFrame.point().x,
-							mFrame.point().y, null);
+					g.drawImage(bufferedImages[1], mFrame.point().x, mFrame.point().y, null);
 			else if (triggered)
-				g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[2])), mFrame.point().x,
-						mFrame.point().y, null);
+				g.drawImage(bufferedImages[2], mFrame.point().x, mFrame.point().y, null);
 			else
-				g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[0])), mFrame.point().x,
-						mFrame.point().y, null);
+				g.drawImage(bufferedImages[0], mFrame.point().x, mFrame.point().y, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
