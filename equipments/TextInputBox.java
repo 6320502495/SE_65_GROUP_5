@@ -16,6 +16,14 @@ public class TextInputBox extends MObject {
 	private Color color;
 	private Font font;
 	public boolean accepting = false;
+	
+	public boolean receiving() {
+		return mButton.triggered;
+	}
+	
+	public void reset() {
+		textInputter.reset();
+	}
 
 	public TextInputBox(MGroup mGroup, Point point, Figure figure, String[] images, Mode mode, int max, Point offset,
 			Font font) {
