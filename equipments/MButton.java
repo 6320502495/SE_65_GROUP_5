@@ -19,7 +19,7 @@ public class MButton extends Sprite {
 
 	public final MFrame mFrame;
 
-	private String[] images;
+	protected String[] images;
 
 	public final String[] images() {
 		return images;
