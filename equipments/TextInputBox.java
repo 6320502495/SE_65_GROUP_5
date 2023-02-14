@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
@@ -32,7 +33,7 @@ public class TextInputBox extends MObject {
 	}
 
 	public TextInputBox(MGroup mGroup, Point point, Figure figure, String[] images, Mode mode, int max, Point offset,
-			Font font) {
+			Font font) throws IOException {
 		super(mGroup);
 		if (offset == null)
 			throw new IllegalArgumentException("offset cannot be null");
@@ -101,7 +102,7 @@ public class TextInputBox extends MObject {
 	}
 
 	public void check() {
-		legal = textInputter.read().length() < 5;
+		legal = textInputter.read().length() >= 5;
 	}
 
 	@Override
