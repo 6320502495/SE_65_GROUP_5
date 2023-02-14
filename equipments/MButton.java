@@ -23,7 +23,7 @@ public class MButton extends Sprite {
 		return images;
 	}
 
-	public final void setImages(String[] images) {
+	public void setImages(String[] images) {
 		if (images.length != 4)
 			throw new IllegalArgumentException("images's length must be 4");
 		for (int i = 0; i < 4; i++)
@@ -87,7 +87,7 @@ public class MButton extends Sprite {
 	}
 
 	@Override
-	public final void loop(Graphics g) {
+	public void loop(Graphics g) {
 		if (triggerable)
 			if (mFrame.isPressed(MouseEvent.BUTTON1))
 				triggered = !triggered;
@@ -112,6 +112,5 @@ public class MButton extends Sprite {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 }
