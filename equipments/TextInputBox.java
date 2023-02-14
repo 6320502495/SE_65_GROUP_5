@@ -4,8 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 import control.MHandler;
+import control.MPainter;
 import equipments.TextInputter.Mode;
 import stage.Script.MGroup;
 
@@ -16,12 +21,13 @@ public class TextInputBox extends MObject {
 	private Color color;
 	private Font font;
 	public boolean accepting = false;
-	
-	public boolean receiving() {
+	public boolean legal = true;
+
+	public final boolean receiving() {
 		return mButton.triggered;
 	}
-	
-	public void reset() {
+
+	public final void reset() {
 		textInputter.reset();
 	}
 
@@ -32,12 +38,70 @@ public class TextInputBox extends MObject {
 			throw new IllegalArgumentException("offset cannot be null");
 		if (font == null)
 			throw new IllegalArgumentException("font cannot be null");
-		mButton = new MButton(mGroup, point, figure, images, false, false);
+		mButton = new MButton(mGroup, point, figure, images, false, false) {
+			private String[] images;
+
+			public void setImages(String[] images) {
+				if (images.length != 8)
+					throw new IllegalArgumentException("images's length must be 8");
+				for (int i = 0; i < 8; i++)
+					if (images[i] == null)
+						throw new IllegalArgumentException("images cannot be null");
+				this.images = images;
+			}
+
+			@Override
+			public final void loop(Graphics g) {
+				if (triggerable)
+					if (mFrame.isPressed(MouseEvent.BUTTON1)) {
+						if (triggered)
+							check();
+						triggered = !triggered;
+					}
+				if (buttonPanel != null && refreshingNeed) {
+					buttonPanel.refresh(this);
+					refreshingNeed = false;
+				}
+				try {
+					if (mFrame.isTouched())
+						if (triggered)
+							g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[3])), mFrame.point().x,
+									mFrame.point().y, null);
+						else if (textInputter.read().compareTo("") == 0)
+							g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[1])), mFrame.point().x,
+									mFrame.point().y, null);
+						else if (legal)
+							g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[5])), mFrame.point().x,
+									mFrame.point().y, null);
+						else
+							g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[7])), mFrame.point().x,
+									mFrame.point().y, null);
+					else if (triggered)
+						g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[2])), mFrame.point().x,
+								mFrame.point().y, null);
+					else if (textInputter.read().compareTo("") == 0)
+						g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[0])), mFrame.point().x,
+								mFrame.point().y, null);
+					else if (legal)
+						g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[4])), mFrame.point().x,
+								mFrame.point().y, null);
+					else
+						g.drawImage(ImageIO.read(new File(MPainter.imagePath() + images[6])), mFrame.point().x,
+								mFrame.point().y, null);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		};
 		textInputter = new TextInputter(mGroup, mode, max);
 		this.offset = offset;
 		this.font = font;
 		MHandler.add(mButton);
 		MHandler.add(textInputter);
+	}
+
+	public void check() {
+		legal = textInputter.read().length() < 5;
 	}
 
 	@Override
