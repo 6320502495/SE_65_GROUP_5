@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 
 import control.MHandler;
 import control.MPainter;
-import equipments.TextInputter.Mode;
+import equipments.TextInputter.TextInputMode;
 import stage.Script.MGroup;
 
 public class TextInputBox extends MObject {
@@ -29,6 +29,14 @@ public class TextInputBox extends MObject {
 	private Font font;
 	public boolean accepting = false;
 	public boolean legal = true;
+	public boolean hidden;
+	private int showingLimit;
+
+	public void setShowingLimit(int showingLimit) {
+		if (showingLimit < 0)
+			throw new IllegalArgumentException("showingLimit cannot be negative");
+		this.showingLimit = showingLimit;
+	}
 
 	public final boolean receiving() {
 		return mButton.triggered;
@@ -38,8 +46,8 @@ public class TextInputBox extends MObject {
 		textInputter.reset();
 	}
 
-	public TextInputBox(MGroup mGroup, Point point, Figure figure, String[] images, Mode mode, int max, Point offset,
-			Font font, Color color) throws IOException {
+	public TextInputBox(MGroup mGroup, Point point, Figure figure, String[] images, TextInputMode textInputMode,
+			int max, Point offset, Font font, Color color, boolean hidden, int showingLimit) throws IOException {
 		super(mGroup);
 		if (offset == null)
 			throw new IllegalArgumentException("offset cannot be null");
@@ -47,6 +55,7 @@ public class TextInputBox extends MObject {
 			throw new IllegalArgumentException("font cannot be null");
 		if (color == null)
 			throw new IllegalArgumentException("color cannot be null");
+		setShowingLimit(showingLimit);
 		mButton = new MButton(mGroup, point, figure, images, false, false) {
 			private BufferedImage[] bufferedImages;
 
@@ -97,10 +106,11 @@ public class TextInputBox extends MObject {
 				}
 			}
 		};
-		textInputter = new TextInputter(mGroup, mode, max);
+		textInputter = new TextInputter(mGroup, textInputMode, max);
 		this.offset = offset;
 		this.font = font;
 		this.color = color;
+		this.hidden = hidden;
 		MHandler.add(mButton);
 		MHandler.add(textInputter);
 	}
@@ -109,12 +119,31 @@ public class TextInputBox extends MObject {
 		// anything
 	}
 
+	private String trim() {
+		if (textInputter.read().length() <= showingLimit)
+			return textInputter.read();
+		byte[] trimmedBytes = new byte[showingLimit];
+		for (int i = textInputter.read().length() - showingLimit, j = 0; i < textInputter.read().length(); i++, j++)
+			trimmedBytes[j] = (byte) textInputter.read().toCharArray()[i];
+		return new String(trimmedBytes);
+	}
+
+	private String hide() {
+		byte[] hiddenBytes = new byte[showingLimit];
+		for (int i = 0; i < textInputter.read().length() && i < showingLimit; i++)
+			hiddenBytes[i] = '*';
+		return new String(hiddenBytes);
+	}
+
 	@Override
 	public void loop(Graphics g) {
 		mButton.triggerable = accepting;
 		textInputter.reading = mButton.triggered;
 		g.setColor(color);
 		g.setFont(font);
-		g.drawString("" + textInputter.read(), mButton.point.x + offset.x, mButton.point.y + offset.y);
+		String shown = trim();
+		if (hidden)
+			shown = hide();
+		g.drawString("" + shown, mButton.point.x + offset.x, mButton.point.y + offset.y);
 	}
 }
