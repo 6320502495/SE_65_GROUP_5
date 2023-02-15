@@ -4,13 +4,10 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
+import control.FileManager;
 import control.MHandler;
-import control.MPainter;
 import control.MouseInput;
 import equipments.MFrame.MovableDirection;
 import stage.Script.MGroup;
@@ -35,7 +32,7 @@ public class MButton extends Sprite {
 				throw new IllegalArgumentException("images cannot be null");
 		this.images = images;
 		for (int i = 0; i < 4; i++)
-			bufferedImages[i] = ImageIO.read(new File(MPainter.imagePath() + images[i]));
+			bufferedImages[i] = FileManager.readImage(images[i]);
 	}
 
 	public boolean triggerable = false;
