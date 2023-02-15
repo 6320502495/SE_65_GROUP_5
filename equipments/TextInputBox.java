@@ -18,11 +18,11 @@ import stage.Script.MGroup;
 
 public class TextInputBox extends MObject {
 	private MButton mButton;
-	
+
 	public MButton mButton() {
 		return mButton;
 	}
-	
+
 	private TextInputter textInputter;
 	private Point offset;
 	private Color color;
@@ -46,7 +46,7 @@ public class TextInputBox extends MObject {
 		if (font == null)
 			throw new IllegalArgumentException("font cannot be null");
 		mButton = new MButton(mGroup, point, figure, images, false, false) {
-			private BufferedImage[] bufferedImages = new BufferedImage[8];
+			private BufferedImage[] bufferedImages;
 
 			public void setImages(String[] images) throws IOException {
 				if (images.length != 8)
@@ -55,6 +55,7 @@ public class TextInputBox extends MObject {
 					if (images[i] == null)
 						throw new IllegalArgumentException("images cannot be null");
 				this.images = images;
+				bufferedImages = new BufferedImage[8];
 				for (int i = 0; i < 8; i++)
 					bufferedImages[i] = ImageIO.read(new File(MPainter.imagePath() + images[i]));
 			}
