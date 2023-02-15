@@ -25,14 +25,14 @@ public class TextInputter extends MObject {
 		read = "";
 	}
 
-	public enum Mode {
+	public enum TextInputMode {
 		TEXT, NUMBER, INT, DOUBLE
 	}
 
-	private Mode mode;
+	private TextInputMode textInputMode;
 
-	public Mode mode() {
-		return mode;
+	public TextInputMode textInputMode() {
+		return textInputMode;
 	}
 
 	private int max;
@@ -47,16 +47,16 @@ public class TextInputter extends MObject {
 		this.max = max;
 	}
 
-	public void setMode(Mode mode) {
-		if (mode == null)
+	public void setMode(TextInputMode textInputMode) {
+		if (textInputMode == null)
 			throw new IllegalArgumentException("mode cannot be null");
 		read = "";
-		this.mode = mode;
+		this.textInputMode = textInputMode;
 	}
 
-	public TextInputter(MGroup mGroup, Mode mode, int max) {
+	public TextInputter(MGroup mGroup, TextInputMode textInputMode, int max) {
 		super(mGroup);
-		setMode(mode);
+		setMode(textInputMode);
 		setMax(max);
 	}
 
@@ -220,7 +220,7 @@ public class TextInputter extends MObject {
 		}
 		if (read.length() > 0)
 			while (addedChars.length() > 0) {
-				switch (mode) {
+				switch (textInputMode) {
 				case TEXT:
 					break;
 				case DOUBLE:
