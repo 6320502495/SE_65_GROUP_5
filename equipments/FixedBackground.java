@@ -10,8 +10,6 @@ import control.MPainter;
 
 public class FixedBackground extends Background {
 	private BufferedImage bufferedImage;
-	private int x = 0;
-	private int y = 0;
 
 	public FixedBackground(String image) throws IOException {
 		if (image == null)
@@ -23,6 +21,6 @@ public class FixedBackground extends Background {
 	public void loop(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, MPainter.WIDTH, MPainter.HEIGHT);
-		g.drawImage(bufferedImage, x, y, null);
+		g.drawImage(bufferedImage, 0, 0, null);
 	}
 }
