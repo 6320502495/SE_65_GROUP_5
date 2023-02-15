@@ -39,12 +39,14 @@ public class TextInputBox extends MObject {
 	}
 
 	public TextInputBox(MGroup mGroup, Point point, Figure figure, String[] images, Mode mode, int max, Point offset,
-			Font font) throws IOException {
+			Font font, Color color) throws IOException {
 		super(mGroup);
 		if (offset == null)
 			throw new IllegalArgumentException("offset cannot be null");
 		if (font == null)
 			throw new IllegalArgumentException("font cannot be null");
+		if (color == null)
+			throw new IllegalArgumentException("color cannot be null");
 		mButton = new MButton(mGroup, point, figure, images, false, false) {
 			private BufferedImage[] bufferedImages;
 
@@ -98,6 +100,7 @@ public class TextInputBox extends MObject {
 		textInputter = new TextInputter(mGroup, mode, max);
 		this.offset = offset;
 		this.font = font;
+		this.color = color;
 		MHandler.add(mButton);
 		MHandler.add(textInputter);
 	}
