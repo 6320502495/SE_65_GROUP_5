@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+/*anonymous*/
+Route::get('/anonymous/home', [AnonymousController::class,'home'])->name('home');
+/**/
