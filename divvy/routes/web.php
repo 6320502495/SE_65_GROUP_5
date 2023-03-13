@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnonymousController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CampaignController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,7 @@ use App\Http\Controllers\SignupController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 /*login */
 Route::get('/login', [LoginController::class,'index'] );
 
@@ -28,4 +31,8 @@ Route::get('/signup',[SignupController::class,'index']);
 /*anonymous/**/
 Route::get('/anonymous/home', [AnonymousController::class,'home'])->name('home');
 
+/*account */
+Route::get('/account/all', [AccountController::class, 'index'])->name('account');
 
+/*campaign */
+Route::get('/campaign/all', [CampaignController::class, 'index'])->name('campaign');
