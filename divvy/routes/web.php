@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnonymousController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SignupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+/*login */
+Route::get('/login', [LoginController::class,'index'] );
 
+/*register*/
+Route::get('/signup',[SignupController::class,'index']);
 
-/*anonymous*/
+/*anonymous/**/
 Route::get('/anonymous/home', [AnonymousController::class,'home'])->name('home');
-/**/
+
+
