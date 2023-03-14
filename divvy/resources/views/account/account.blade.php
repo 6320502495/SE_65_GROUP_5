@@ -8,28 +8,7 @@
 </head>
 <body>
   <div class="py-12">
-    <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            Account Name : {{$accounts->Account_Name}}
-          </div>
-          <div class="col-sm">
-            Account Firstname : {{$accounts->Account_Firstname}}
-          </div>
-          <div class="col-sm">
-            Account Surname : {{$accounts->Account_Surname}}
-          </div>
-          <div class="col-sm">
-            Account Birthday : {{$accounts->Account_Birthday}}
-          </div>
-          <div class="col-sm">
-            Account Username : {{$accounts->Account_Username}}
-          </div>
-          <div class="col-sm">
-            Account Password : {{$accounts->Account_Password}}
-          </div>
-        </div>
-    </div>           
-</div>
+      {{$account}}       
+    </div>
 </body>
 </html>

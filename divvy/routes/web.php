@@ -32,7 +32,9 @@ Route::get('/signup',[SignupController::class,'index']);
 Route::get('/anonymous/home', [AnonymousController::class,'home'])->name('home');
 
 /*account */
-Route::get('/account/all', [AccountController::class, 'index'])->name('account');
+Route::get('/account/all', [AccountController::class, 'showAll'])->name('accountAll');
+Route::get('/account/{id}', [AccountController::class, 'show'])->name('account');
 
 /*campaign */
-Route::get('/campaign/all', [CampaignController::class, 'index'])->name('campaign');
+Route::get('/campaign/all', [CampaignController::class, 'showAll'])->name('campaignAll');
+Route::get('/campaign/{id}', [CampaignController::class, 'show'])->name('campaign');
