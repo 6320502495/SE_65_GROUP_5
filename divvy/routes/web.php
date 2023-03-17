@@ -36,5 +36,9 @@ Route::get('/account/all', [AccountController::class, 'showAll'])->name('account
 Route::get('/account/{id}', [AccountController::class, 'show'])->name('account');
 
 /*campaign */
+Route::get('/campaign/create', [CampaignController::class, 'create'])->name('campaignCreate');
+Route::post('/campaign/save', [CampaignController::class, 'save'])->name('campaignSave');
+Route::get('/campaign/edit/{id}', [CampaignController::class, 'edit'])->name('campaignEdit');
+Route::post('/campaign/update/{id}', [CampaignController::class, 'update'])->name('campaignUpdate');
 Route::get('/campaign/all', [CampaignController::class, 'showAll'])->name('campaignAll');
 Route::get('/campaign/{id}', [CampaignController::class, 'show'])->name('campaign');
