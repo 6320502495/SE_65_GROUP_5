@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,24 @@ Route::get('/campaign/edit/{id}', [CampaignController::class, 'edit'])->name('ca
 Route::post('/campaign/update/{id}', [CampaignController::class, 'update'])->name('campaignUpdate');
 Route::get('/campaign/all', [CampaignController::class, 'showAll'])->name('campaignAll');
 Route::get('/campaign/{id}', [CampaignController::class, 'show'])->name('campaign');
+
+/*admin*/
+    /*Account*/
+Route::get('/admin/account/all', [AdminController::class, 'showAllAccount'])->name('adminAccountAll');
+Route::get('/admin/account', [AdminController::class, 'showAccount'])->name('adminAccount');
+Route::get('/admin/account/search', [AdminController::class, 'searchAccount'])->name('adminSearchAccount');
+Route::get('/admin/account/update', [AdminController::class, 'updateAccount'])->name('adminUpdateAccount');
+    /*Ban Account*/
+Route::get('/admin/account/ban/all', [AdminController::class, 'showBanAccount'])->name('adminAccountBan');
+Route::get('/admin/account/ban', [AdminController::class, 'showBan'])->name('adminBan');
+Route::get('/admin/account/ban/search', [AdminController::class, 'searchBanAccount'])->name('adminSearchBanAccount');
+Route::get('/admin/account/ban/update', [AdminController::class, 'updateBanAccount'])->name('adminUpdateBan');
+    /*Campaign*/
+Route::get('/admin/campaign/all', [AdminController::class, 'showAllCampaign'])->name('adminCampaignAll');
+Route::get('/admin/campaign', [AdminController::class, 'showCampaign'])->name('adminCampaign');
+Route::get('/admin/campaign/search', [AdminController::class, 'searchCampaign'])->name('adminSearchCampaign');
+Route::get('/admin/campaign/close', [AdminController::class, 'closeCampaign'])->name('adminCampaignClose');
+Route::get('/admin/campaign/cancel', [AdminController::class, 'cancelCampaign'])->name('adminCampaignCancel');
 
 /* Document Inspection */
 Route::get('/documentInspection/{password}', function ($password) {

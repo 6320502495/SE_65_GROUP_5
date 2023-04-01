@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Campaign extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $table = 'campaign';
 
     protected $fillable = [
@@ -26,6 +28,7 @@ class Campaign extends Model
         'Campaign_Institute_Name',
         'Campaign_Institute_Paper',
         'Campaign_Institute_Tel',
-        'Approve_Campaign_ID ',
+        'Approve_Campaign_ID',
+        'Campaign_Status',
     ];
 }
