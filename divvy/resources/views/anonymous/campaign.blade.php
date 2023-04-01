@@ -56,7 +56,7 @@
             <div class="col-md-2 pt-2"></div>
             <div class="col-md-8">
               <form class="text-center">
-                <div class="form-group text-center shadow-none"> <input type="password" class="form-control form-control-lg text-center w-100" placeholder="ใส่จำนวนเงิน"> </div> <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                <div class="form-group text-center shadow-none"> <input type="number" step="0.01" class="form-control form-control-lg text-center w-100" placeholder="ใส่จำนวนเงิน"> </div> <button type="submit" class="btn btn-primary btn-lg">Submit</button>
               </form>
             </div>
             <div class="col-md-2"></div>
