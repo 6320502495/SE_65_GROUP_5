@@ -99,7 +99,7 @@
                       <td>3/3/2023</td>
                       <td>17.00</td>
                       <td>the Bird</td>
-                      <td contenteditable="true">300.00</td>
+                      <td>300.00</td>
                     </tr>
                   </tbody>
                 </table>
