@@ -23,11 +23,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*login */
-Route::get('/login', [LoginController::class,'index'] );
-
 /*register*/
-Route::get('/signup',[SignupController::class,'index']);
+Route::get('/signup',[SignupController::class,'index'])->name('signup');
+Route::post('/signup/add',[SignupController::class,'store'])->name('register');
+
+/*login */
+Route::get('/login', [LoginController::class,'index'] )->name('login');
 
 /*anonymous/**/
 Route::get('/anonymous/home', [AnonymousController::class,'home'])->name('home');
