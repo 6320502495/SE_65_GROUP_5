@@ -8,6 +8,7 @@
         <?php
             use App\Http\Controllers\DocumentInspectionController;
             $reportUsers = DocumentInspectionController::showAllForInspector();
+            $password = "documentinspectorpassword";
             echo "<table border=1>";
                 echo "<tr><th>ชื่อบัญชี</th><th>ชื่อ</th><th>นามสกุล</th><th>วันเกิด</th><th>สาเหตุที่ถูกร้องเรียน</th><th colspan=2>ตัวเลือก</th></tr>";
                 foreach($reportUsers as $reportUser) {
@@ -18,10 +19,10 @@
                         echo "<td>", $reportUser->Account_Birthday, "</td>";
                         echo "<td>", $reportUser->Report_Reason, "</td>";
                         echo "<td>";
-                            echo "ปฏิเสธการร้องเรียน";
+                            echo "<a href='/documentInspection/reject/$password/$reportUser->ID'>ปฏิเสธการร้องเรียน</a>";
                         echo "</td>";
                         echo "<td>";
-                            echo "ส่งต่อการร้องเรียน";
+                            echo "<a href='/documentInspection/proceed/$password/$reportUser->ID'>ส่งต่อการร้องเรียน</a>";
                         echo "</td>";
                     echo "</tr>";
                 };
