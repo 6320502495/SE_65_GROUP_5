@@ -78,6 +78,7 @@
       <div class="row1 w-100">
         <!-- campaign-->
        <!--  foreach-->
+       <!--  โค้ดนี้ ยังเชื่อมไม่ได้-->
        @php($i=1)
        @foreach($campaigns as campaign)
         <div class="border rounded m-1 py-1 shadow border-light col-md-3"><img class="img-fluid d-block w-75 mx-auto" src="https://static.pingendo.com/img-placeholder-1.svg" style="">
