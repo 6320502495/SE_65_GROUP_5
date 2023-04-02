@@ -175,4 +175,16 @@ class AdminController extends Controller
         ->get();
         return view('admin.campaignAll', compact('campaign'));
     }
+    
+    public static function showReportedUsers()
+    {
+        $reportUsers=DB::table('account')
+        ->join('report', 'account.ID', '=', 'report.Account_ID')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Status', 'report.Report_Reason', 'report.sending'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Status', 'report.Report_Reason', 'report.sending')
+        ->where('account.Account_Status', '=', 'unban')
+        ->where('report.Sending', '=', 'Admin')
+        ->get();
+        return $reportUsers;
+    }
 }
