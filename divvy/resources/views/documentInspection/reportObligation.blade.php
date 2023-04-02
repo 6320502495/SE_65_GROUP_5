@@ -18,10 +18,10 @@
                         echo "<td>", $reportUser->Account_Birthday, "</td>";
                         echo "<td>", $reportUser->Report_Reason, "</td>";
                         echo "<td>";
-                            echo "ปฏิเสธการร้องเรียน";
+                            echo "ปฏิเสธการแบน";
                         echo "</td>";
                         echo "<td>";
-                            echo "ส่งต่อการร้องเรียน";
+                            echo "ตัดสินใจแบน";
                         echo "</td>";
                     echo "</tr>";
                 };
