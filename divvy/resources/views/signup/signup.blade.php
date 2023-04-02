@@ -10,7 +10,7 @@
 
 <body class="d-flex flex-column align-items-start m-0 p-0 w-100 h-100" style="	background-image: linear-gradient(to bottom, transparent, transparent);	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
   <nav class="navbar navbar-light d-flex flex-row-reverse bg-dark w-100 h-100" style="	box-shadow: 0px 0px 4px  black, 0px 0px 4px  black;">
-    <div class="container"> <a class="navbar-brand text-primary m-0 p-0" href="{{route('refList')}}">
+    <div class="container"> <a class="navbar-brand text-primary m-0 p-0" href="{{route('home')}}">
         <i class="fa d-inline fa-lg fa-circle"></i>
         <b> Divvy</b>
       </a>

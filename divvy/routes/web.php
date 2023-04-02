@@ -7,6 +7,7 @@ use App\Http\Controllers\SignupController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Route::get('/', function () {
 /*register*/
 Route::get('/signup',[SignupController::class,'index'])->name('signup');
 Route::post('/signup/add',[SignupController::class,'store'])->name('register');
+
+/*admin registration*/
+Route::get('admin/home',[HomeController::class,'adminHome'])->name('admin.home')->middleware('is_admin');
 
 /*login */
 Route::get('/login', [LoginController::class,'index'] )->name('login');
@@ -79,3 +83,6 @@ Route::get('/documentInspection/{password}', function ($password) {
     โค้ดสำหรับการ hash $password ให้กลายเป็น $hashed_password
     password_verify($user_password, $stored_hashed_password)
     โค้ดตรวจสอบว่า $user_password ตรงกับ $stored_hashed_password หรือไม่ */
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

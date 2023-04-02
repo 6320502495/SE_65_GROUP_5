@@ -26,7 +26,7 @@
           <li class="nav-item"> </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item"> <a class="nav-link text-dark" href="{{route('refList')}}">HOME</a> </li>
+          <li class="nav-item"> <a class="nav-link text-dark" href="{{route('home')}}">HOME</a> </li>
           <li class="nav-item text-dark"> <a class="nav-link text-dark" href="{{route('signup')}}">REGISTER</a> </li>
         </ul>
       </div>
