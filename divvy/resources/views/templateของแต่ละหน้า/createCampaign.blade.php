@@ -39,12 +39,15 @@
                 </li>
               </ul>
             </div>
+            
+           <!--การบริจาคส่วนบุคคล--> 
+            
             <div class="card-body">
               <div class="tab-content mt-2">
                 <div class="tab-pane fade show active" id="tabone" role="tabpanel">
                   <p class="">การบริจาคส่วนบุคคล</p>
                   
-                  
+              <!--การบริจาคส่วนบุคคล อัปโหลดรูป-->
                   <div>
                     <div class="mb-4 d-flex justify-content-center">
                          <img src="https://static.pingendo.com/img-placeholder-1.svg" alt="example placeholder" style="width: 300px;" />
@@ -57,7 +60,7 @@
                     </div>
                 </div>
                   
-                  
+                  <!--การบริจาคส่วนบุคคล การเลือกหมวดหมู่-->
                   <div class="btn-group py-3">
                     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">หมวดหมู่</button>
                     <div class="dropdown-menu"> <a class="dropdown-item" href="#">Action</a>
@@ -65,19 +68,28 @@
                       <a class="dropdown-item" href="#">Separated link</a>
                     </div>
                   </div>
+                  
+                  <!--การบริจาคส่วนบุคคล ฟอร์ม-->
+                  <!--ชื่อ-->
                   <form id="c_form-h" class="">
                   <div class="form-group row"> <label for="name" class="col-2 col-form-label">Name</label>
                       <div class="col-10">
                         <input type="text" class="form-control" id="name" placeholder="example"> </div>
                     </div>
+                    
+                    <!--รายละเอียด-->
                     <div class="form-group row"> <label for="detail" class="col-2 col-form-label">Detail</label>
                       <div class="col-10">
                         <input type="text" class="form-control" id="detail" placeholder="example"> </div>
                     </div>
+                    
+                    <!--เบอร์-->
                     <div class="form-group row"> <label for="tel" class="col-2 col-form-label">Tel.</label>
                       <div class="col-10">
                         <input type="number" class="form-control" id="tel" placeholder="example"> </div>
                     </div>
+                    
+                    <!--ธนาคาร droplist-->
                     <div class="form-group row"> <label for="bank" class="col-2 col-form-label">Bank</label>
                       <div class="col-10">
                         <div class="btn-group w-100">
@@ -89,14 +101,15 @@
                         </div>
                       </div>
                     </div>
+                    
+                    
+                    <!--หมายเลขบัญชี-->
                     <div class="form-group row"> <label for="bid" class="col-2 col-form-label">Bank Account ID</label>
                       <div class="col-10">
                         <input type="email" class="form-control" id="bid" placeholder="example"> </div>
                     </div>
                     
-
-
-
+                    <!--การเลือกจบ-->
                     <div class="form-group row"> <label  class="col-2 col-form-label">End With</label>
                     <div class="col-10">
 
@@ -112,12 +125,14 @@
 
                         <!-- Tab panes -->
                         <div class="tab-content">
+                            <!--จบแบบเลือกวัน-->
                             <div role="tabpanel" class="tab-pane active" id="date">
                             <div class="form-group row"> <label class="col-2 col-form-label">Date</label>
                                 <div class="col-10">
                                     <input type="date" class="form-control" id="inputmailh" placeholder="example" > </div>
                                 </div>
                             </div>
+                            <!--จบแบบเลือกจำนวนเงิน-->
                             <div role="tabpanel" class="tab-pane" id="tabpane2">
                             <div class="form-group row"> <label  class="col-2 col-form-label" contenteditable="true">Amount</label>
                                 <div class="col-10">
@@ -131,16 +146,17 @@
 
 
 
-
+                <!--การบริจาคส่วนตัว ปุ่มsubmit--> 
                   <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
                 
                 
-                
+                 <!--การบริจาคในนามองค์กร--> 
                 </div>
                 <div class="tab-pane fade" id="tabtwo" role="tabpanel">
                   <p class="">การบริจาคในนามองค์กร</p>
 
+                   <!--การบริจาคในนามองค์กร การอัปโหลดภาพ-->
                   <div>
                     <div class="mb-4 d-flex justify-content-center">
                          <img src="https://static.pingendo.com/img-placeholder-1.svg" alt="example placeholder" style="width: 300px;" />
@@ -155,7 +171,7 @@
                   
 
 
-
+                <!--การบริจาคในนามองค์กร การเลือกหมวดหมู่-->
                   <div class="btn-group py-3">
                     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">หมวดหมู่</button>
                     <div class="dropdown-menu"> <a class="dropdown-item" href="#">Action</a>
@@ -163,19 +179,28 @@
                       <a class="dropdown-item" href="#">Separated link</a>
                     </div>
                   </div>
+                  
+                  <!--การบริจาคในนามองค์กร ฟอร์ม-->
+                  <!--ชื่อ-->
                   <form id="c_form-h" class="">
                     <div class="form-group row"> <label for="name" class="col-2 col-form-label">Name</label>
                       <div class="col-10">
                         <input type="text" class="form-control" id="name" placeholder="example"> </div>
                     </div>
+                    
+                    <!--รายละเอียด-->
                     <div class="form-group row"> <label for="detail" class="col-2 col-form-label">Detail</label>
                       <div class="col-10">
                         <input type="text" class="form-control" id="detail" placeholder="example"> </div>
                     </div>
+                    
+                     <!--เบอร์-->
                     <div class="form-group row"> <label for="tel" class="col-2 col-form-label">Tel.</label>
                       <div class="col-10">
                         <input type="number" class="form-control" id="tel" placeholder="example"> </div>
                     </div>
+                    
+                    <!--ธนาคาร droplist-->
                     <div class="form-group row"> <label for="bank" class="col-2 col-form-label">Bank</label>
                       <div class="col-10">
                         <div class="btn-group w-100">
@@ -187,18 +212,23 @@
                         </div>
                       </div>
                     </div>
+                    
+                    <!--หมายเลขบัญชี-->
                     <div class="form-group row"> <label for="bid" class="col-2 col-form-label">Bank Account ID</label>
                       <div class="col-10">
                         <input type="email" class="form-control" id="bid" placeholder="example"> </div>
                     </div>
-
+                    
+                    
+                    <!--การอัปโหลดไฟล์ยืนยันตัวตน-->
                     <div class="form-group row">
                         <label for="customFile" class="col-2 col-form-label">File</label>
                         <div class="col-10">
                             <input type="file" class="form-control" id="customFile" />
                         </div>
                     </div>
-
+                    
+                    <!--การเลือกจบ-->
                     <div class="form-group row"> <label  class="col-2 col-form-label">End With</label>
                     <div class="col-10">
 
@@ -214,12 +244,15 @@
 
                         <!-- Tab panes -->
                         <div class="tab-content">
+                        <!--จบแบบเลือกวัน-->
                             <div role="tabpanel" class="tab-pane active" id="date">
                             <div class="form-group row"> <label class="col-2 col-form-label">Date</label>
                                 <div class="col-10">
                                     <input type="date" class="form-control" id="inputmailh" placeholder="example" > </div>
                                 </div>
                             </div>
+                            
+                            <!--จบแบบเลือกจำนวนเงิน-->
                             <div role="tabpanel" class="tab-pane" id="tabpane2">
                             <div class="form-group row"> <label  class="col-2 col-form-label" contenteditable="true">Amount</label>
                                 <div class="col-10">
@@ -231,6 +264,7 @@
                         </div>
                     </div>
                     
+                    <!--การบริจาคในนามองค์กร ปุ่มsubmit--> 
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
                 </div>
