@@ -37,4 +37,12 @@ class DocumentInspectionController
     {
         DB::table('report')->update(['sending' => 'Admin'])->where('Account_ID', '=', $ID);
     }
+
+    public static function reject($ID) {
+        ;
+    }
+
+    public static function ban($ID) {
+        ;
+    }
 }
