@@ -76,8 +76,37 @@ Route::get('/documentInspection/{password}', function ($password) {
         // password: adminpassword
         return view('documentInspection/reportObligation');
     }
-    // เมื่อ Divvy ทำเสร็จสมบูรณ์ จะต้องลบรหัสผ่านที่ไม่ได้ถูก hash ออกไปจากโค้ดเพื่อความปลอดภัย
 });
+
+Route::get('/documentInspection/proceed/{password}/{id}', function ($password, $id) {
+    if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
+        // password: documentinspectorpassword
+        DocumentInspectionController::proceed($id);
+    }
+});
+
+Route::get('/documentInspection/reject/{password}/{id}', function ($password, $id) {
+    if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
+        // password: documentinspectorpassword
+        DocumentInspectionController::reject($id);
+    }
+});
+
+Route::get('/admin/ban/{password}/{id}', function ($password, $id) {
+    if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
+        // password: documentinspectorpassword
+        DocumentInspectionController::ban($id);
+    }
+});
+
+Route::get('/admin/reject/{password}/{id}', function ($password, $id) {
+    if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
+        // password: documentinspectorpassword
+        DocumentInspectionController::reject($id);
+    }
+});
+
+// เมื่อ Divvy ทำเสร็จสมบูรณ์ จะต้องลบรหัสผ่านที่ไม่ได้ถูก hash ออกไปจากโค้ดเพื่อความปลอดภัย
 
 /*  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     โค้ดสำหรับการ hash $password ให้กลายเป็น $hashed_password
