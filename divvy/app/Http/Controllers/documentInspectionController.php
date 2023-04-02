@@ -9,7 +9,7 @@ use Illuminate\View\View;
 
 class DocumentInspectionController
 {
-    public static function showAll()
+    public static function showAllForInspector()
     {
         $reportUsers=DB::table('account')
         ->join('report', 'account.ID', '=', 'report.Account_ID')
@@ -17,6 +17,18 @@ class DocumentInspectionController
         ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Status', 'report.Report_Reason', 'report.sending')
         ->where('account.Account_Status', '=', 'unban')
         ->where('report.Sending', '=', 'Inspector')
+        ->get();
+        return $reportUsers;
+    }
+
+    public static function showAllForAdmin()
+    {
+        $reportUsers=DB::table('account')
+        ->join('report', 'account.ID', '=', 'report.Account_ID')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Status', 'report.Report_Reason', 'report.sending'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Status', 'report.Report_Reason', 'report.sending')
+        ->where('account.Account_Status', '=', 'unban')
+        ->where('report.Sending', '=', 'Admin')
         ->get();
         return $reportUsers;
     }
