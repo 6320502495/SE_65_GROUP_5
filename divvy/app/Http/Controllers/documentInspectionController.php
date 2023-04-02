@@ -35,14 +35,15 @@ class DocumentInspectionController
 
     public static function proceed($ID)
     {
-        DB::table('report')->update(['sending' => 'Admin'])->where('Account_ID', '=', $ID);
+        DB::table('report')->where('Account_ID', $ID)->update(['Sending' => 'Admin']);
     }
 
     public static function reject($ID) {
-        ;
+        DB::table('report')->where('Account_ID', $ID)->delete();
     }
 
     public static function ban($ID) {
-        ;
+        DB::table('account')->where('ID', $ID)->update(['Account_Status' => 'Ban']);
+        DB::table('report')->where('Account_ID', $ID)->delete();
     }
 }
