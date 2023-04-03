@@ -34,7 +34,7 @@
             @foreach ($account as $acc)
               <div class="row mt-4">
                 <div class="col-md-6">
-                  <p class="lead text-right">Name :</p>
+                  <p class="lead text-right">ชื่อ :</p>
                 </div>
                 <div class="col-md-6">
                   <p class="lead text-left">{{$acc->Account_Firstname}}  {{$acc->Account_Surname}}</p>
@@ -42,7 +42,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <p class="lead text-right">Account Name :</p>
+                  <p class="lead text-right">ชื่อ Account :</p>
                 </div>
                 <div class="col-md-6">
                   <p class="lead text-left">{{$acc->Account_Name}}</p>
@@ -50,7 +50,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <p class="lead text-right">Amount :</p>
+                  <p class="lead text-right">จำนวนเงิน :</p>
                 </div>
                 <div class="col-md-6">
                   <p class="lead text-left">{{$acc->Amount}}</p>
@@ -58,7 +58,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <p class="lead text-right">Report Reason :</p>
+                  <p class="lead text-right">เหตุผลที่ถูกรีพอร์ต :</p>
                 </div>
                 <div class="col-md-6">
                   <p class="lead text-left">{{$acc->Report_Reason}}</p>

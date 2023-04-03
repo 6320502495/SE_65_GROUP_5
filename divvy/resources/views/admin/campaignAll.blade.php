@@ -80,11 +80,11 @@
      @foreach ($campaign as $campaigns)
       <div class="border rounded m-1 py-1 shadow border-light col-md-3"><img class="img-fluid d-block w-75 mx-auto" src="https://static.pingendo.com/img-placeholder-1.svg" style="">
         <h5 class="text-center mt-2 w-100">{{$campaigns->Campaign_Name}}</h5>
-        <p class="">Account Name : {{$campaigns->Account_Name}}</p>
-        <p class="">Campaign Amount : {{$campaigns->Amount}}</p>
-        <p class="">Campaign Donate Goal : {{$campaigns->Campaign_Donation_Goals}}</p>
-        <p class="">Campaign Start Date : {{$campaigns->Campaign_Starting_Date}}</p>
-        <h5 class="text-right">Status : {{$campaigns->Campaign_Status}}</h5>
+        <p class="">ชื่อผู้เปิดแคมเปญ : {{$campaigns->Account_Name}}</p>
+        <p class="">ยอดบริจาค : {{$campaigns->Amount}}</p>
+        <p class="">เป้าหมายเงินโดเนท : {{$campaigns->Campaign_Donation_Goals}}</p>
+        <p class="">วันเริ่มแคมเปญ : {{$campaigns->Campaign_Starting_Date}}</p>
+        <h5 class="text-right">สถานะ : {{$campaigns->Campaign_Status}}</h5>
         <div class="row">
           <div class="col-md-4"><a class="btn btn-primary text-white" onclick="window.location='{{route('adminCampaign')}}?id={{$campaigns->ID}}'" style="">detail&gt;</a></div>
         </div>

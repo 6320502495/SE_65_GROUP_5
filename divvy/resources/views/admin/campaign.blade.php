@@ -33,7 +33,7 @@
         <div class="col-md-8">
           <div class="row">
             <div class="col-md-12">
-              <h1 class="">{{$cam->Campaign_Name}} Status : {{$cam->Campaign_Status}}</h1>
+              <h1 class="">{{$cam->Campaign_Name}} สถานะ : {{$cam->Campaign_Status}}</h1>
             </div>
           </div>
           <div class="row">
