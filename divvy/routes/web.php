@@ -69,54 +69,68 @@ Route::get('/admin/campaign/close', [AdminController::class, 'closeCampaign'])->
 Route::get('/admin/campaign/cancel', [AdminController::class, 'cancelCampaign'])->name('adminCampaignCancel');
 
 /* Document Inspection */
-Route::get('/documentInspection/{password}', function ($password) {
-    if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
-        // password: documentinspectorpassword
-        return view('documentInspection/reportAcquisition');
-    } else if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
-        // password: adminpassword
-        return view('documentInspection/reportObligation');
-    }
+Route::get('/documentInspection', function () { 
+    try {
+        $password = file_get_contents("D:/Passwords/DocumentInspectorPassword.txt");
+        if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
+            return view('documentInspection/reportAcquisition');
+        }
+        $password = file_get_contents("D:/Passwords/AdminPassword.txt");
+        if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
+            return view('documentInspection/reportObligation');
+        }
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    } 
 });
 
-Route::get('/documentInspection/proceed/{password}/{id}', function ($password, $id) {
-    if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
-        // password: documentinspectorpassword
-        DocumentInspectionController::proceed($id);
-        echo "Go back and refresh the page!";
-    }
+Route::get('/documentInspection/proceed/{id}', function ($id) {
+    try {
+        $password = file_get_contents("D:/Passwords/DocumentInspectorPassword.txt");
+        if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
+            DocumentInspectionController::proceed($id);
+            echo "Go back and refresh the page!";
+        }
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    } 
 });
 
-Route::get('/documentInspection/reject/{password}/{id}', function ($password, $id) {
-    if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
-        // password: documentinspectorpassword
-        DocumentInspectionController::reject($id);
-        echo "Go back and refresh the page!";
-    }
+Route::get('/documentInspection/reject/{id}', function ($id) {
+    try {
+        $password = file_get_contents("D:/Passwords/DocumentInspectorPassword.txt");
+        if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
+            DocumentInspectionController::reject($id);
+            echo "Go back and refresh the page!";
+        }
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    } 
 });
 
-Route::get('/admin/ban/{password}/{id}', function ($password, $id) {
-    if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
-        // password: documentinspectorpassword
-        DocumentInspectionController::ban($id);
-        echo "Go back and refresh the page!";
-    }
+Route::get('/admin/ban/{id}', function ($id) {
+    try {
+        $password = file_get_contents("D:/Passwords/AdminPassword.txt");
+        if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
+            DocumentInspectionController::ban($id);
+            echo "Go back and refresh the page!";
+        }
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    } 
 });
 
-Route::get('/admin/reject/{password}/{id}', function ($password, $id) {
-    if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
-        // password: documentinspectorpassword
-        DocumentInspectionController::reject($id);
-        echo "Go back and refresh the page!";
-    }
+Route::get('/admin/reject/{id}', function ($id) {
+    try {
+        $password = file_get_contents("D:/Passwords/AdminPassword.txt");
+        if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
+            DocumentInspectionController::reject($id);
+            echo "Go back and refresh the page!";
+        }
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    } 
 });
-
-// เมื่อ Divvy ทำเสร็จสมบูรณ์ จะต้องลบรหัสผ่านที่ไม่ได้ถูก hash ออกไปจากโค้ดเพื่อความปลอดภัย
-
-/*  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    โค้ดสำหรับการ hash $password ให้กลายเป็น $hashed_password
-    password_verify($user_password, $stored_hashed_password)
-    โค้ดตรวจสอบว่า $user_password ตรงกับ $stored_hashed_password หรือไม่ */
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
