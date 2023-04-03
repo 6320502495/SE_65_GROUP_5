@@ -83,6 +83,7 @@ Route::get('/documentInspection/proceed/{password}/{id}', function ($password, $
     if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
         // password: documentinspectorpassword
         DocumentInspectionController::proceed($id);
+        echo "Go back and refresh the page!";
     }
 });
 
@@ -90,6 +91,7 @@ Route::get('/documentInspection/reject/{password}/{id}', function ($password, $i
     if (password_verify($password, '$2y$10$MHIsDHSbSAjnJQ.CbnBTRurAkGC6dGpFIZ/uInce7.OvDN18CBt5S')) {
         // password: documentinspectorpassword
         DocumentInspectionController::reject($id);
+        echo "Go back and refresh the page!";
     }
 });
 
@@ -97,6 +99,7 @@ Route::get('/admin/ban/{password}/{id}', function ($password, $id) {
     if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
         // password: documentinspectorpassword
         DocumentInspectionController::ban($id);
+        echo "Go back and refresh the page!";
     }
 });
 
@@ -104,6 +107,7 @@ Route::get('/admin/reject/{password}/{id}', function ($password, $id) {
     if (password_verify($password, '$2y$10$hKkp36BE38F6hMb0C9nMp.0SKNo1QHm29TPo8BNg1tk7GbJIo6w7q')) {
         // password: documentinspectorpassword
         DocumentInspectionController::reject($id);
+        echo "Go back and refresh the page!";
     }
 });
 
