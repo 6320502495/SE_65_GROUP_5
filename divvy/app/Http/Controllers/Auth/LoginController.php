@@ -47,12 +47,14 @@ class LoginController extends Controller
         ]);
         if(auth()->attempt(array('email'=>$input['email'],'password'=>$input['password'])))
         {
-            if(auth()->user()->is_admin == 1){
-                return redirect()->route('admin.home');
-            }
-            else{
-                return redirect()->route('home');
-            }
+          switch(auth()->user()->is_admin)
+          {
+            case 1: return redirect()->route('home'); break;
+            case 2: return redirect()->route('finance.home'); break;
+            case 3: return redirect()->route('document.home'); break;
+            case 4: return redirect()->route('admin.home'); break;
+            default: break;
+          }
         }
         else{
             return redirect()->route('login')->with('error',"Email or Password are wrong"); 
