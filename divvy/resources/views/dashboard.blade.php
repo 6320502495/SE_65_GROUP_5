@@ -55,7 +55,7 @@
         @php($i=1)
     
         @foreach ($campaign as $ecampaign)
-            @if($ecampaign->status!=0)
+            @if($ecampaign->status=="open")
             @php($j=$i-1)
             @if($i==1||$j%4==0)
                 <div class="row1 w-100">
@@ -64,10 +64,16 @@
                 <img class="img-fluid d-block w-75 mx-auto" src="{{$ecampaign->Campaign_Image}}" >
                 <h5 class="text-center mt-2 w-100 " style="white-space: normal; overflow: hidden; text-overflow: ellipsis;">{{$ecampaign->Campaign_Name}}</h5>
                 <p class="" style="white-space: normal; overflow: hidden; text-overflow: ellipsis; ">{{$ecampaign->Campaign_Details}}</p>
-                <h5 class="text-right">/ {{$ecampaign->Campaign_Donation_Goals}}</h5>
+                @php($total_donation=0)
+                @foreach($donation_rec as $dr)
+                  @if($dr->Campaign_ID==$ecampaign->ID)
+                    @php($total_donation += floatval($dr->Amount))
+                  @endif
+                @endforeach
+                <h5 class="text-right">{{$total_donation}} / {{$ecampaign->Campaign_Donation_Goals}}</h5>
                 <div class="row">
                     <div class="col-md-4"></div>
-                    <div class="col-md-4"><a class="btn btn-primary" href="{{ route('campaign', ['id' => $ecampaign->Campaign_ID]) }}" style="">detail&gt;</a></div>
+                    <div class="col-md-4"><a class="btn btn-primary" href="{{ route('campaign', ['id' => $ecampaign->ID]) }}" style="">detail&gt;</a></div>
                     <div class="col-md-4"></div>
                 </div>
             </div>
