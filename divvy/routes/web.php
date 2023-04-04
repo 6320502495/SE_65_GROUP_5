@@ -134,6 +134,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/*anonymous user*/
+Route::get('/',  [AnonymousController::class, 'home'],function () {
+    return view('welcome');
+});
+
+Route::get('/campaign', [AnonymousController::class, 'home'])->name('anonymousCampaign');
+
+
 /*user*/
 
 Route::middleware([
