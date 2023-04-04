@@ -9,35 +9,40 @@ use App\Models\Campaign;
 
 class CampaignController extends Controller
 {
-    public function showAll() {
+    public function showAll()
+    {
         //$campaign = Campaign::all();
-        $campaign=DB::table('campaign')->get();
+        $campaign = DB::table('campaign')->get();
         return view('campaign.campaignAll', compact('campaign'));
     }
 
-    public function show(string $id) : View
+    public function show(string $id): View
     {
-        $campaign=Campaign::find($id);
+        $campaign = Campaign::find($id);
         //print($accounts);
         return view('campaign.campaign', compact('campaign'));
     }
 
-    public function create() {
+    public function create()
+    {
         //$campaign = Campaign::all();
         return view('campaign.campaignCreate');
     }
 
-    public function createIndividual() {
+    public function createIndividual()
+    {
         //$campaign = Campaign::all();
         return view('campaign.campaignCreateIndividual');
     }
 
-    public function createOrganization() {
+    public function createOrganization()
+    {
         //$campaign = Campaign::all();
         return view('campaign.campaignCreateOrganization');
     }
 
-    public function saveIndividual(Request $request) {
+    public function saveIndividual(Request $request)
+    {
         $campaign = new Campaign;
         $campaign->Account_ID = 1;
         $campaign->Campaign_Name = $request->Campaign_Name;
@@ -48,12 +53,21 @@ class CampaignController extends Controller
         $campaign->Campaign_Category = $request->Campaign_Category;
         $campaign->Campaign_Donation_Goals = $request->Campaign_Donation_Goals;
         $campaign->Campaign_Type = 'Individual';
+        $imageVal = $request->file('Campaign_Image');
+        $imgName = strtolower($imageVal->getClientOriginalExtension());
+        $name = hexdec(uniqid());
+        $saveName = $name . '.' . $imgName;
+        $upload_location = 'image/campaignImage/';
+        $full_path = $upload_location . $saveName;
+        $campaign->Campaign_Image = $full_path;
         $campaign->save();
-        $campaign=DB::table('campaign')->get();
+        $imageVal->move($upload_location, $saveName);
+        $campaign = DB::table('campaign')->get();
         return view('campaign.campaignAll', compact('campaign'));
     }
 
-    public function saveOrganization(Request $request) {
+    public function saveOrganization(Request $request)
+    {
         $campaign = new Campaign;
         $campaign->Account_ID = 1;
         $campaign->Campaign_Name = $request->Campaign_Name;
@@ -64,20 +78,37 @@ class CampaignController extends Controller
         $campaign->Campaign_Category = $request->Campaign_Category;
         $campaign->Campaign_Donation_Goals = $request->Campaign_Donation_Goals;
         $campaign->Campaign_Institute_Name = $request->Campaign_Institute_Name;
-        $campaign->Campaign_Institute_Paper = $request->Campaign_Institute_Paper;
         $campaign->Campaign_Institute_Tel = $request->Campaign_Institute_Tel;
         $campaign->Campaign_Type = 'Organization';
+        $imageVal = $request->file('Campaign_Institute_Paper');
+        $imgName = strtolower($imageVal->getClientOriginalExtension());
+        $name = hexdec(uniqid());
+        $saveName = $name . '.' . $imgName;
+        $upload_location = 'image/campaignImage/';
+        $full_path = $upload_location . $saveName;
+        $campaign->Campaign_Institute_Paper = $full_path;
+        $imageVal->move($upload_location, $saveName);
+        $imageVal2 = $request->file('Campaign_Image');
+        $imgName2 = strtolower($imageVal2->getClientOriginalExtension());
+        $name2 = hexdec(uniqid());
+        $saveName2 = $name2 . '.' . $imgName2;
+        $upload_location2 = 'image/campaignImage/';
+        $full_path2 = $upload_location2 . $saveName2;
+        $campaign->Campaign_Image = $full_path2;
         $campaign->save();
-        $campaign=DB::table('campaign')->get();
+        $imageVal2->move($upload_location2, $saveName2);
+        $campaign = DB::table('campaign')->get();
         return view('campaign.campaignAll', compact('campaign'));
     }
 
-    public function edit(string $id){
-        $campaign=Campaign::find($id);
+    public function edit(string $id)
+    {
+        $campaign = Campaign::find($id);
         return view('campaign.campaignEdit', compact('campaign'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $update = Campaign::find($id)->update([
             'Account_ID' => 1,
             'Campaign_Name' => $request->Campaign_Name,

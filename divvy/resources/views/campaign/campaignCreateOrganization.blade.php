@@ -30,28 +30,42 @@
     </nav>
     <div class="py-5">
         <div class="container d-flex justify-content-center">
-            <form action="{{ route('campaignSaveOrganization') }}" method="POST">
+            <form action="{{ route('campaignSaveOrganization') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <img class="img-fluid d-block mx-auto" src="https://static.pingendo.com/img-placeholder-1.svg"
                             width="300">
                     </div>
+                    <div class="col-sm-10">
+                        <label class="mr-sm-2" for="Campaign">รูปโปรไฟล์:</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="Campaign_Image" name="Campaign_Image"
+                                onchange="displayProfileName()">
+                            <label class="custom-file-label" for="Campaign_Image">Choose file</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group row">
-                    <label class="mr-sm-2" for="Campaign">ชื่อแคมเปญ:</label>
+                    <div class="col-sm-10">
+                        <label class="mr-sm-2" for="Campaign">ชื่อแคมเปญ:</label>
+                    </div>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="Campaign_Name" name="Campaign_Name" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="mr-sm-2" for="Campaign">รายละเอียดแคมเปญ:</label>
+                    <div class="col-sm-10">
+                        <label class="mr-sm-2" for="Campaign">รายละเอียดแคมเปญ:</label>
+                    </div>
                     <div class="col-sm-10">
                         <textarea id="Campaign_Details" class="form-control" name="Campaign_Details" required></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="mr-sm-2" for="Campaign">เบอร์โทรศัพท์:</label>
+                    <div class="col-sm-10">
+                        <label class="mr-sm-2" for="Campaign">เบอร์โทรศัพท์:</label>
+                    </div>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="Campaign_Tel" name="Campaign_Tel" required>
                     </div>
@@ -73,16 +87,21 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="mr-sm-2" for="Campaign">เป้าหมายเงินโดเนท:</label>
+                    <div class="col-sm-10">
+                        <label class="mr-sm-2" for="Campaign">เป้าหมายเงินโดเนท:</label>
+                    </div>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="Campaign_Donation_Goals"
                             name="Campaign_Donation_Goals" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="mr-sm-2" for="Campaign">ประเภทแคมเปญ:</label>
                     <div class="col-sm-10">
-                        <select class="custom-select mr-sm-2" id="Campaign_Category" name="Campaign_Category" required>
+                        <label class="mr-sm-2" for="Campaign">ประเภทแคมเปญ:</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <select class="custom-select mr-sm-2" id="Campaign_Category" name="Campaign_Category"
+                            required>
                             <option value="">เลือกประเภท</option>
                             <option value="Education">Education</option>
                             <option value="Health">Health</option>
@@ -92,25 +111,32 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="mr-sm-2" for="Campaign">ชื่อหน่วยงาน / องค์กร:</label>
+                    <div class="col-sm-10">
+                        <label class="mr-sm-2" for="Campaign">ชื่อหน่วยงาน / องค์กร:</label>
+                    </div>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="Campaign_Institute_Name"
                             name="Campaign_Institute_Name" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="mr-sm-2" for="Campaign">เบอร์โทรศัพท์ของหน่วยงาน:</label>
+                    <div class="col-sm-10">
+                        <label class="mr-sm-2" for="Campaign">เบอร์โทรศัพท์ของหน่วยงาน:</label>
+                    </div>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="Campaign_Institute_Tel"
                             name="Campaign_Institute_Tel">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="mr-sm-2" for="Campaign">เอกสารการเป็นตัวแทน:</label>
+                    <div class="col-sm-10">
+                        <label class="mr-sm-2" for="Campaign">เอกสารการเป็นตัวแทน:</label>
+                    </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="Campaign_Institute_Paper" onchange="displayFileName()">
+                        <input type="file" class="custom-file-input" id="Campaign_Institute_Paper"
+                            name="Campaign_Institute_Paper" onchange="displayFileName()">
                         <label class="custom-file-label" for="Campaign_Institute_Paper">Choose file</label>
-                      </div>
+                    </div>
                 </div>
                 <div class="form-group row">
                     <div class="container d-flex justify-content-between">
@@ -139,9 +165,16 @@
 
 <script>
     function displayFileName() {
-      const inputFile = document.getElementById("Campaign_Institute_Paper");
-      const fileName = inputFile.files[0].name;
-      const label = document.querySelector(".custom-file-label");
-      label.innerHTML = fileName;
+        const inputFile = document.getElementById("Campaign_Institute_Paper");
+        const fileName = inputFile.files[0].name;
+        const label = document.querySelector(".custom-file-label");
+        label.innerHTML = fileName;
     }
-    </script>
+
+    function displayProfileName() {
+        const inputFile = document.getElementById("Campaign_Image");
+        const fileName = inputFile.files[0].name;
+        const label = document.querySelector(".custom-file-label");
+        label.innerHTML = fileName;
+    }
+</script>

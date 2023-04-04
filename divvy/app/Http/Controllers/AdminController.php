@@ -16,8 +16,8 @@ class AdminController extends Controller
         $accounts=DB::table('account')
         ->join('deposit_records', 'account.ID', '=', 'deposit_records.Account_ID')
         ->join('report', 'account.ID', '=', 'report.Account_ID')
-        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
-        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
         ->where('account.Account_Status', '=', 1)
         ->get();
         $type=1;
@@ -28,8 +28,8 @@ class AdminController extends Controller
         $account=DB::table('account')
         ->join('deposit_records', 'account.ID', '=', 'deposit_records.Account_ID')
         ->join('report', 'account.ID', '=', 'report.Account_ID')
-        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
-        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
         ->where('account.ID', $request->input('id'))
         ->get();
         return view('admin.account', compact('account'));
@@ -39,8 +39,8 @@ class AdminController extends Controller
         $accounts=DB::table('account')
         ->join('deposit_records', 'account.ID', '=', 'deposit_records.Account_ID')
         ->join('report', 'account.ID', '=', 'report.Account_ID')
-        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
-        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
         ->where('account.Account_Status', '=', 1)
         ->where('account.Account_Name', 'like', '%'.$request->input('query').'%')
         ->get();
@@ -53,8 +53,8 @@ class AdminController extends Controller
         $accounts=DB::table('account')
         ->join('deposit_records', 'account.ID', '=', 'deposit_records.Account_ID')
         ->join('report', 'account.ID', '=', 'report.Account_ID')
-        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
-        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
         ->where('account.Account_Status', '=', 2)
         ->get();
         $type=2;
@@ -66,8 +66,8 @@ class AdminController extends Controller
         $account=DB::table('account')
         ->join('deposit_records', 'account.ID', '=', 'deposit_records.Account_ID')
         ->join('report', 'account.ID', '=', 'report.Account_ID')
-        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
-        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
         ->where('account.ID', $request->input('id'))
         ->get();
         return view('admin.account', compact('account'));
@@ -77,8 +77,8 @@ class AdminController extends Controller
         $accounts=DB::table('account')
         ->join('deposit_records', 'account.ID', '=', 'deposit_records.Account_ID')
         ->join('report', 'account.ID', '=', 'report.Account_ID')
-        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
-        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
         ->where('account.Account_Status', '=', 2)
         ->where('account.Account_Name', 'like', '%'.$request->input('query').'%')
         ->get();
@@ -91,8 +91,8 @@ class AdminController extends Controller
         $accounts=DB::table('account')
         ->join('deposit_records', 'account.ID', '=', 'deposit_records.Account_ID')
         ->join('report', 'account.ID', '=', 'report.Account_ID')
-        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
-        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
         ->where('account.Account_Status', '=', 1)
         ->get();
         $type=1;
@@ -105,8 +105,8 @@ class AdminController extends Controller
         $accounts=DB::table('account')
         ->join('deposit_records', 'account.ID', '=', 'deposit_records.Account_ID')
         ->join('report', 'account.ID', '=', 'report.Account_ID')
-        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
-        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
+        ->select(array('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', DB::raw('SUM(deposit_records.Deposit_Amount) as Amount'), 'report.Report_Reason'))
+        ->groupBy('account.ID', 'account.Account_Firstname', 'account.Account_Profile_Picture', 'account.Account_Surname', 'account.Account_Name', 'account.Account_Birthday', 'account.Account_Username', 'account.Account_Password', 'account.Account_Status', 'report.Report_Reason')
         ->where('account.Account_Status', '=', 2)
         ->get();
         $type=2;
@@ -118,9 +118,9 @@ class AdminController extends Controller
         //$campaign = Campaign::all();
         $campaign=DB::table('campaign')
         ->join('account', 'account.ID', '=', 'campaign.Account_ID')
-        ->join('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
-        ->select(array('campaign.ID','campaign.Campaign_Name', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
-        ->groupBy('campaign.ID','campaign.Campaign_Name', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
+        ->leftjoin('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
+        ->select(array('campaign.ID','campaign.Campaign_Name', 'campaign.Campaign_Image', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
+        ->groupBy('campaign.ID','campaign.Campaign_Name', 'campaign.Campaign_Image', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
         ->get();
         return view('admin.campaignAll', compact('campaign'));
     }
@@ -128,10 +128,10 @@ class AdminController extends Controller
     public function showCampaign(Request $request) {
         $campaign=DB::table('campaign')
         ->join('account', 'account.ID', '=', 'campaign.Account_ID')
-        ->join('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
+        ->leftjoin('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
         ->where('campaign.ID', $request->input('id'))
-        ->select(array('campaign.ID', 'campaign.Campaign_Name', 'campaign.Campaign_Details', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
-        ->groupBy('campaign.ID', 'campaign.Campaign_Name', 'campaign.Campaign_Details', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
+        ->select(array('campaign.ID', 'campaign.Campaign_Name', 'campaign.Campaign_Image', 'campaign.Campaign_Details', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
+        ->groupBy('campaign.ID', 'campaign.Campaign_Name', 'campaign.Campaign_Image', 'campaign.Campaign_Details', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
         ->get();
         return view('admin.campaign', compact('campaign'));
     }
@@ -139,15 +139,15 @@ class AdminController extends Controller
     public function searchCampaign(Request $request) {
         $campaign=DB::table('campaign')
         ->join('account', 'account.ID', '=', 'campaign.Account_ID')
-        ->join('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
+        ->leftjoin('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
         ->where('campaign.Campaign_Name', 'like', '%'.$request->input('query').'%')
         ->orwhere('campaign.Campaign_Details', 'like', '%'.$request->input('query').'%')
         ->orwhere('account.Account_Name', 'like', '%'.$request->input('query').'%')
         ->orwhere('campaign.Campaign_Donation_Goals', 'like', '%'.$request->input('query').'%')
         ->orwhere('campaign.Campaign_Starting_Date', 'like', '%'.$request->input('query').'%')
         ->orwhere('campaign.Campaign_Status', 'like', '%'.$request->input('query').'%')
-        ->select(array('campaign.ID', 'campaign.Campaign_Name', 'campaign.Campaign_Details', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
-        ->groupBy('campaign.ID', 'campaign.Campaign_Name', 'campaign.Campaign_Details', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
+        ->select(array('campaign.ID', 'campaign.Campaign_Name', 'campaign.Campaign_Image', 'campaign.Campaign_Details', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
+        ->groupBy('campaign.ID', 'campaign.Campaign_Name', 'campaign.Campaign_Image', 'campaign.Campaign_Details', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
         ->get();
         return view('admin.campaignAll', compact('campaign'));
     }
@@ -157,9 +157,9 @@ class AdminController extends Controller
         DB::table('campaign')->where('ID', $request->input('id'))->update(['Campaign_Status' => 'Cancel']);
         $campaign=DB::table('campaign')
         ->join('account', 'account.ID', '=', 'campaign.Account_ID')
-        ->join('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
-        ->select(array('campaign.ID','campaign.Campaign_Name', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
-        ->groupBy('campaign.ID','campaign.Campaign_Name', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
+        ->leftjoin('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
+        ->select(array('campaign.ID','campaign.Campaign_Name', 'campaign.Campaign_Image', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
+        ->groupBy('campaign.ID','campaign.Campaign_Name', 'campaign.Campaign_Image', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
         ->get();
         return view('admin.campaignAll', compact('campaign'));
     }
@@ -169,13 +169,13 @@ class AdminController extends Controller
         DB::table('campaign')->where('ID', $request->input('id'))->update(['Campaign_Status' => 'Close']);
         $campaign=DB::table('campaign')
         ->join('account', 'account.ID', '=', 'campaign.Account_ID')
-        ->join('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
-        ->select(array('campaign.ID','campaign.Campaign_Name', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
-        ->groupBy('campaign.ID','campaign.Campaign_Name', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
+        ->leftJoin('donation_record', 'donation_record.Campaign_ID', '=', 'campaign.ID')
+        ->select(array('campaign.ID','campaign.Campaign_Name', 'campaign.Campaign_Image', 'account.Account_Name', DB::raw('SUM(donation_record.Amount) as Amount'), 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status'))
+        ->groupBy('campaign.ID','campaign.Campaign_Name', 'campaign.Campaign_Image', 'account.Account_Name', 'campaign.Campaign_Donation_Goals', 'campaign.Campaign_Starting_Date', 'campaign.Campaign_Status')
         ->get();
         return view('admin.campaignAll', compact('campaign'));
     }
-    
+
     public static function showReportedUsers()
     {
         $reportUsers=DB::table('account')
