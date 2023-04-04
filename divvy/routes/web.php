@@ -133,3 +133,21 @@ Route::get('/admin/reject/{id}', function ($id) {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/*user*/
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', [UserController::class, 'home'], function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+    
+Route::get('/campaign/{id}', [UserController::class, 'show'])->name('campaign');
+Route::post('/campaign/donate',[UserController::class, 'userDonate'])->name('userDonate');
+
+

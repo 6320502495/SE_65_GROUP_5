@@ -16,6 +16,7 @@ class Account extends Model
         'Account_Firstname',
         'Account_Surname',
         'Account_Birthday',
+        'Account_Profile_Picture',
         'Account_Gender',
         'Account_Tel',
         'Account_Email',

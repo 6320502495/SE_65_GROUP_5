@@ -74,16 +74,16 @@
                     @endif
                 </div>
                 <div class="col-md-3" style="">
-                        <!-- ตัวช่วยการค้นหา หมวดหมู่-->
-                        @if ($type === 1)
-                            <div class="col-md-8"><a class="btn btn-primary text-white"
-                                    onclick="window.location='{{ route('adminAccountBan') }}'"
-                                    style="">Ban Page&gt;</a></div>
-                        @else
-                            <div class="col-md-8"><a class="btn btn-primary text-white"
-                                    onclick="window.location='{{ route('adminAccountAll') }}'"
-                                    style="">UnBan Page&gt;</a></div>
-                        @endif
+                    <!-- ตัวช่วยการค้นหา หมวดหมู่-->
+                    @if ($type === 1)
+                        <div class="col-md-8"><a class="btn btn-primary text-white"
+                                onclick="window.location='{{ route('adminAccountBan') }}'" style="">Ban
+                                Page&gt;</a></div>
+                    @else
+                        <div class="col-md-8"><a class="btn btn-primary text-white"
+                                onclick="window.location='{{ route('adminAccountAll') }}'" style="">UnBan
+                                Page&gt;</a></div>
+                    @endif
                 </div>
                 <div class="col-md-3" style=""></div>
             </div>
@@ -93,42 +93,45 @@
         <div class="container" style="">
             <!-- row-->
 
-            <div class="row1 w-100">
-                <!-- Ban-->
-                <!--  foreach-->
-                @foreach ($accounts as $account)
-                    <div class="border rounded m-1 py-1 shadow border-light col-md-3"><img
-                            class="img-fluid d-block w-75 mx-auto"
-                            src="https://static.pingendo.com/img-placeholder-1.svg" style="">
-                        <h5 class="text-center mt-2 w-100">{{ $account->Account_Name }}</h5>
-                        <p class="">ชื่อจริง : {{ $account->Account_Firstname }}</p>
-                        <p class="">นามสกุล : {{ $account->Account_Surname }}</p>
-                        <p class="">วันเกิด : {{ $account->Account_Birthday }}</p>
-                        <p class="">Username : {{ $account->Account_Username }}</p>
-                        <p class="">Password : {{ $account->Account_Password }}</p>
-                        <h5 class="text-right">{{ $account->Amount }}</h5>
-                        <div class="row">
-                            <div class="col-md-4"><a class="btn btn-primary text-white"
-                                    onclick="window.location='{{ route('adminAccount') }}?id={{ $account->ID }}'"
-                                    style="">detail&gt;</a></div>
-                            <div class="col-md-4"></div>
-                            @if ($account->Account_Status === 'Ban')
-                                <div class="col-md-4"><a class="btn btn-success text-white"
-                                        onclick="window.location='{{ route('adminUpdateBan') }}?id={{ $account->ID }}'"
-                                        style="">UnBan&gt;</a></div>
-                            @else
-                                <div class="col-md-4"><a class="btn btn-danger text-white"
-                                        onclick="window.location='{{ route('adminUpdateAccount') }}?id={{ $account->ID }}'"
-                                        style="">Ban&gt;</a></div>
-                            @endif
+            <div class="col">
+                <div class="row ">
+                    <!-- Ban-->
+                    <!--  foreach-->
+                    @foreach ($accounts as $account)
+                        <div class="border rounded m-1 py-1 shadow border-light col-md-3"><img
+                                class="img-fluid d-block w-75 mx-auto"
+                                src="{{asset($account->Account_Profile_Picture)}}" style="">
+                            <h5 class="text-center mt-2 w-100">{{ $account->Account_Name }}</h5>
+                            <p class="">ชื่อจริง : {{ $account->Account_Firstname }}</p>
+                            <p class="">นามสกุล : {{ $account->Account_Surname }}</p>
+                            <p class="">วันเกิด : {{ $account->Account_Birthday }}</p>
+                            <p class="">Username : {{ $account->Account_Username }}</p>
+                            <p class="">Password : {{ $account->Account_Password }}</p>
+                            <h5 class="text-right">{{ $account->Amount }}</h5>
+                            <div class="row">
+                                <div class="col-md-4"><a class="btn btn-primary text-white"
+                                        onclick="window.location='{{ route('adminAccount') }}?id={{ $account->ID }}'"
+                                        style="">detail&gt;</a></div>
+                                <div class="col-md-4"></div>
+                                @if ($account->Account_Status === 'Ban')
+                                    <div class="col-md-4"><a class="btn btn-success text-white"
+                                            onclick="window.location='{{ route('adminUpdateBan') }}?id={{ $account->ID }}'"
+                                            style="">UnBan&gt;</a></div>
+                                @else
+                                    <div class="col-md-4"><a class="btn btn-danger text-white"
+                                            onclick="window.location='{{ route('adminUpdateAccount') }}?id={{ $account->ID }}'"
+                                            style="">Ban&gt;</a></div>
+                                @endif
 
+                            </div>
                         </div>
-                    </div>
-                @endforeach
-                <!--  endforeach-->
-                <!-- UnBan-->
+                    @endforeach
+                    <!--  endforeach-->
+                    <!-- UnBan-->
+                </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 {{-- <body>
@@ -137,7 +140,7 @@
       <label for="search">Search:</label>
       <input type="text" id="search" name="id">
       <button type="submit">Search</button>
-    </form>     
+    </form>
     @foreach ($accounts as $account)
       <div class="container">
         <div class="row">
@@ -161,8 +164,8 @@
           </div>
         </div>
       </div>
-      <button style="background-color: red; color: white;" onclick="window.location='{{route('adminUpdateAccount')}}?id={{$account->ID}}'">Ban</button>  
-    @endforeach         
+      <button style="background-color: red; color: white;" onclick="window.location='{{route('adminUpdateAccount')}}?id={{$account->ID}}'">Ban</button>
+    @endforeach
 </div>
 </body> --}}
 

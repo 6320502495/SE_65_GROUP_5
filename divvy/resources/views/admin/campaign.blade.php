@@ -29,7 +29,7 @@
     <div class="container">
       @foreach ($campaign as $cam)
       <div class="row">
-        <div class="col-md-4"><img class="img-fluid d-block mx-auto" src="https://static.pingendo.com/img-placeholder-1.svg" width="300"></div>
+        <div class="col-md-4"><img class="img-fluid d-block mx-auto" src="{{asset($cam->Campaign_Image)}}" width="300"></div>
         <div class="col-md-8">
           <div class="row">
             <div class="col-md-12">
@@ -50,7 +50,7 @@
               <h4 class="text-right">ยอดบริจาค :</h4>
             </div>
             <div class="col-md-6">
-              <h4 class="text-left">{{$cam->Amount}} / {{$cam->Campaign_Donation_Goals}}</h4>
+              <h4 class="text-left">{{$cam->Amount  ?? 0}} / {{$cam->Campaign_Donation_Goals}}</h4>
             </div>
           </div>
           <div class="row pt-4">

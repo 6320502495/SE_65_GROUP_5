@@ -29,9 +29,10 @@
       <div class="row">
         <div class="col-9">
           <div class="container">
-              <img class="img-fluid d-block rounded-circle mx-auto" src="https://static.pingendo.com/img-placeholder-3.svg" width="100
-200">
+
+
             @foreach ($account as $acc)
+            <img class="img-fluid d-block rounded-circle mx-auto" src="{{asset($acc->Account_Profile_Picture)}}" width="100 200">
               <div class="row mt-4">
                 <div class="col-md-6">
                   <p class="lead text-right">ชื่อ :</p>
