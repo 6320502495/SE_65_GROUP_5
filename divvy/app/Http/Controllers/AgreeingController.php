@@ -9,46 +9,47 @@ use App\Http\Controllers\Controller;
 
 class AgreeingController
 {
+
     /*
     public static function createAgreeing($campaignID)
     {
         $donators = DB::table('donation_record')
-            ->select('account_ID')
+            ->select('user_ID')
             ->distinct()
             ->where('Campaign_ID', '=', $campaignID)
             ->get();  
         foreach ($donators as $donator) {
             $donatedAmount = DB::table('donation_record')
                 ->where('Campaign_ID', '=', $campaignID)
-                ->where('Account_ID', '=', $donator->account_ID)
+                ->where('user_ID', '=', $donator->user_ID)
                 ->sum('Amount');
-            DB::insert('insert into agreeing (campaign_ID, account_ID, total_donation) values(?, ?, ?)', [$campaignID, $donatedUser->account_ID, $donatedAmount]);
+            DB::insert('insert into agreeing (campaign_ID, user_ID, total_donation) values(?, ?, ?)', [$campaignID, $donatedUser->user_ID, $donatedAmount]);
         }
     }
     */
 
-    public static function getAgreeingNeededCampaigns($accountID) {
+    public static function getAgreeingNeededCampaigns($userID) {
         $campaigns=DB::table('agreeing')
             ->join('campaign', 'campaign.ID', '=', 'agreeing.Campaign_ID')
             ->select(array('campaign.ID', 'campaign.Campaign_Name', 'agreeing.total_donation'))
             ->groupBy('campaign.Campaign_Name', 'agreeing.total_donation', 'campaign.ID')
-            ->where('agreeing.account_ID', '=', $accountID)
+            ->where('agreeing.user_ID', '=', $userID)
             ->where('status', '=', 'None')
             ->get();
         return $campaigns;
     }
 
-    public static function agreeCampaign($accountID, $campaignID) {
+    public static function agreeCampaign($userID, $campaignID) {
         DB::table('agreeing')
-        ->where('account_ID', '=', $accountID)
+        ->where('user_ID', '=', $userID)
         ->where('campaign_ID', '=', $campaignID)
         ->update(array('status' => 'Agree'));
         AgreeingController::checkCampaign($campaignID);
     }
 
-    public static function rejectCampaign($accountID, $campaignID) {
+    public static function rejectCampaign($userID, $campaignID) {
         DB::table('agreeing')
-        ->where('account_ID', '=', $accountID)
+        ->where('user_ID', '=', $userID)
         ->where('campaign_ID', '=', $campaignID)
         ->update(array('status' => 'Reject'));
         AgreeingController::checkCampaign($campaignID);
