@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         type="text/css">
     <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
-    <title>Account UnBan</title>
+    @if ($type === 1)
+        <title>Account Ban</title>
+    @else
+        <title>Account UnBan</title>
+    @endif
     <style>
         .container {
             max-width: none;
@@ -56,7 +60,7 @@
                 </div>
                 <div class="col-md-3" style="">
                     @if ($type === 1)
-                        <form class="form-inline" action="{{ route('adminAccountBan') }}" method="GET">
+                        <form class="form-inline" action="{{ route('adminSearchAccount') }}" method="GET">
                             <div class="input-group">
                                 <input type="text" name="query" placeholder="Search...">
                                 <div class="input-group-append"><button type="submit" class="btn btn-primary"><i
@@ -64,7 +68,7 @@
                             </div>
                         </form>
                     @else
-                        <form class="form-inline" action="{{ route('adminAccountAll') }}" method="GET">
+                        <form class="form-inline" action="{{ route('adminSearchBanAccount') }}" method="GET">
                             <div class="input-group">
                                 <input type="text" name="query" placeholder="Search...">
                                 <div class="input-group-append"><button type="submit" class="btn btn-primary"><i
@@ -77,12 +81,12 @@
                     <!-- ตัวช่วยการค้นหา หมวดหมู่-->
                     @if ($type === 1)
                         <div class="col-md-8"><a class="btn btn-primary text-white"
-                                onclick="window.location='{{ route('adminAccountBan') }}'" style="">Ban
-                                Page&gt;</a></div>
+                                onclick="window.location='{{ route('adminAccountBan') }}'" style="">Admin
+                                UnBan&gt;</a></div>
                     @else
                         <div class="col-md-8"><a class="btn btn-primary text-white"
-                                onclick="window.location='{{ route('adminAccountAll') }}'" style="">UnBan
-                                Page&gt;</a></div>
+                                onclick="window.location='{{ route('adminAccountAll') }}'" style="">Admin
+                                Ban&gt;</a></div>
                     @endif
                 </div>
                 <div class="col-md-3" style=""></div>
@@ -99,27 +103,33 @@
                     <!--  foreach-->
                     @foreach ($accounts as $account)
                         <div class="border rounded m-1 py-1 shadow border-light col-md-3"><img
-                                class="img-fluid d-block w-75 mx-auto"
-                                src="{{asset($account->Account_Profile_Picture)}}" style="">
-                            <h5 class="text-center mt-2 w-100">{{ $account->Account_Name }}</h5>
-                            <p class="">ชื่อจริง : {{ $account->Account_Firstname }}</p>
-                            <p class="">นามสกุล : {{ $account->Account_Surname }}</p>
-                            <p class="">วันเกิด : {{ $account->Account_Birthday }}</p>
-                            <p class="">Username : {{ $account->Account_Username }}</p>
-                            <p class="">Password : {{ $account->Account_Password }}</p>
-                            <h5 class="text-right">{{ $account->Amount }}</h5>
+                                class="img-fluid d-block w-75 mx-auto" src="{{ asset($account->image) }}"
+                                style="">
+                            <h5 class="text-center mt-2 w-100">{{ $account->name }}</h5>
+                            <p class="">ชื่อจริง : {{ $account->firstname }}</p>
+                            <p class="">นามสกุล : {{ $account->lasName }}</p>
+                            <p class="">วันเกิด : {{ $account->birthDate }}</p>
+                            <p class="">Username : {{ $account->email }}</p>
+                            <p class="">Password : {{ $account->password }}</p>
+                            <h5 class="text-right">{{ $account->amount_user }}</h5>
                             <div class="row">
-                                <div class="col-md-4"><a class="btn btn-primary text-white"
-                                        onclick="window.location='{{ route('adminAccount') }}?id={{ $account->ID }}'"
-                                        style="">detail&gt;</a></div>
+                                @if ($account->ban_status === 1)
+                                    <div class="col-md-4"><a class="btn btn-primary text-white"
+                                            onclick="window.location='{{ route('adminBan') }}?id={{ $account->id }}'"
+                                            style="">detail&gt;</a></div>
+                                @else
+                                    <div class="col-md-4"><a class="btn btn-primary text-white"
+                                            onclick="window.location='{{ route('adminAccount') }}?id={{ $account->id }}'"
+                                            style="">detail&gt;</a></div>
+                                @endif
                                 <div class="col-md-4"></div>
-                                @if ($account->Account_Status === 'Ban')
+                                @if ($account->ban_status === 1)
                                     <div class="col-md-4"><a class="btn btn-success text-white"
-                                            onclick="window.location='{{ route('adminUpdateBan') }}?id={{ $account->ID }}'"
+                                            onclick="window.location='{{ route('adminUpdateBan') }}?id={{ $account->id }}'"
                                             style="">UnBan&gt;</a></div>
                                 @else
                                     <div class="col-md-4"><a class="btn btn-danger text-white"
-                                            onclick="window.location='{{ route('adminUpdateAccount') }}?id={{ $account->ID }}'"
+                                            onclick="window.location='{{ route('adminUpdateAccount') }}?id={{ $account->id }}'"
                                             style="">Ban&gt;</a></div>
                                 @endif
 

@@ -85,19 +85,19 @@
                 <div class="row ">
                     <!-- Ban-->
                     <!--  foreach-->
-                    @foreach ($campaign as $campaigns)
+                    @foreach ($campaigns as $campaign)
                         <div class="border rounded m-1 py-1 shadow border-light col-md-3"><img
-                                class="img-fluid d-block w-75 mx-auto"
-                                src="{{asset($campaigns->Campaign_Image)}}" style="">
-                            <h5 class="text-center mt-2 w-100">{{ $campaigns->Campaign_Name }}</h5>
-                            <p class="">ชื่อผู้เปิดแคมเปญ : {{ $campaigns->Account_Name }}</p>
-                            <p class="">ยอดบริจาค : {{ $campaigns->Amount ?? 0 }}</p>
-                            <p class="">เป้าหมายเงินโดเนท : {{ $campaigns->Campaign_Donation_Goals }}</p>
-                            <p class="">วันเริ่มแคมเปญ : {{ $campaigns->Campaign_Starting_Date }}</p>
-                            <h5 class="text-right">สถานะ : {{ $campaigns->Campaign_Status }}</h5>
+                                class="img-fluid d-block w-auto h-auto mx-auto"
+                                src="{{asset($campaign->campaign_Image)}}" style="">
+                            <h5 class="text-center mt-2 w-100">{{ $campaign->campaign_name }}</h5>
+                            <p class="">ชื่อผู้เปิดแคมเปญ : {{ $campaign->name }}</p>
+                            <p class="">ยอดบริจาค : {{ $campaign->current_money ?? 0 }}</p>
+                            <p class="">เป้าหมายเงินโดเนท : {{ $campaign->goals }}</p>
+                            <p class="">ประเภทแคมเปญ : {{ $campaign->campaign_type }}</p>
+                            <h5 class="text-right">สถานะ : {{ $campaign->status }}</h5>
                             <div class="row">
                                 <div class="col-md-4"><a class="btn btn-primary text-white"
-                                        onclick="window.location='{{ route('adminCampaign') }}?id={{ $campaigns->ID }}'"
+                                        onclick="window.location='{{ route('adminCampaign') }}?id={{ $campaign->id }}'"
                                         style="">detail&gt;</a></div>
                             </div>
                         </div>

@@ -18,11 +18,24 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'status',
+        'ban_status',
         'name',
+        'amount_user',
         'email',
         'password',
         'is_admin',
     ];
+
+    /*
+            $table->tinyInteger('status')->default(0);
+            $table->string('name');
+            $table->Integer('amount_user');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->Integer('is_admin');
+    */
 
     /**
      * The attributes that should be hidden for serialization.
