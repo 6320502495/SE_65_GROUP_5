@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('campaign_id');
             $table->index('campaign_id');
             $table->foreignID('campaign_id')->references('ID')->on('campaign')->onDelete('cascade');
-            $table->string('account_id');
-            $table->index('account_id');
-            $table->foreignID('account_id')->references('ID')->on('account')->onDelete('cascade');
+            $table->string('user_id');
+            $table->index('user_id');
+            $table->foreignID('user_id')->references('ID')->on('user')->onDelete('cascade');
             $table->integer('total_donation')->nullable();
             $table->enum('status', ['None', 'Agree', 'Reject'])->default('None');
         });
