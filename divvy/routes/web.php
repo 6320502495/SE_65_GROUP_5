@@ -25,15 +25,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*register*/
-Route::get('/signup',[SignupController::class,'index'])->name('signup');
-Route::post('/signup/add',[SignupController::class,'store'])->name('register');
 
-/*admin registration*/
+/*peopleware home*/
+Route::get('finance/home',[HomeController::class,'financeHome'])->name('finance.home')->middleware('is_admin');
+Route::get('document/home',[HomeController::class,'documentHome'])->name('document.home')->middleware('is_admin');
 Route::get('admin/home',[HomeController::class,'adminHome'])->name('admin.home')->middleware('is_admin');
-
-/*login */
-Route::get('/login', [LoginController::class,'index'] )->name('login');
 
 /*anonymous/**/
 Route::get('/anonymous/home', [AnonymousController::class,'home'])->name('home');
