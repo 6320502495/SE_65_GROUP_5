@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +11,7 @@
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
 </head>
 
-<x-app-layout>
+
 
     <div class="py-5">
     <div class="container w-100 text-center">
@@ -15,7 +19,6 @@
         <div class="col-3">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item" > <a href="" class="active nav-link" data-toggle="pill" data-target="#tabone">Profile</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="" data-toggle="pill" data-target="#tabtwo">Deposit</a> </li>
             <li class="nav-item" > <a href="" class="nav-link" data-toggle="pill" data-target="#tabthree">History</a> </li>
           </ul>
         </div>
@@ -45,17 +48,21 @@
                   <p class="lead text-right">Amount :</p>
                 </div>
                 <div class="col-md-6">
-                  <p class="lead text-left">{{ Auth::user()->balance }}</p>
+                  <p class="lead text-left">{{ Auth::user()->amount_user }}</p>
                 </div>
-              </div><a class="btn btn-primary mt-4" href="#">เติมเงิน</a>
+              </div>
+              
+              <a class="btn btn-primary mt-4" href="{{ route('intTop') }}">เติมเงิน</a>
+              <a class="btn btn-primary mt-4" href="{{ route('WithUser') }}">ถอนเงิน</a>
+              <a class="btn btn-primary mt-4" href="{{ route('hisU') }}">ประวัติการเติม</a>
+            </div>
+            </div>
             </div>
             <div class="tab-pane fade" id="tabtwo" role="tabpanel">
 
-
-              <p class="">test123456</p>
-
-
             </div>
+            <br>
+            <br>
             <div class="tab-pane fade" id="tabthree" role="tabpanel" style="">
               <div class="table-responsive">
                 <table class="table">
@@ -79,7 +86,7 @@
                       <td>13.00</td>
                       <td>Otto</td>
                       <td>100.00</td>
-                      <td><button  class="btn btn-primary btn-lg">คืนเงิน</button></td>
+                      
                     </tr>
                     
                     
@@ -98,6 +105,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
     
-</x-app-layout>
+
 
 </html>
+
+@endsection

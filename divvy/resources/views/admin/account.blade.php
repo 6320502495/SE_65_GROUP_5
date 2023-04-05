@@ -1,29 +1,29 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <style>
+            .container {
+                max-width: none;
+                width: 1200px;
+            }
+
+           .row1{
+                width: 1200px;
+                display: flex;
+                justify-content: center;
+           }
+        </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar18">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar18"> <a class="navbar-brand d-none d-md-block" href="#">
-          <i class="fa d-inline fa-lg fa-circle"></i>
-          <b> Divvy</b>
-        </a>
-        <ul class="navbar-nav mx-auto"></ul>
-        <ul class="navbar-nav">
-          <li class="nav-item"> <a class="nav-link" href="#">Profile</a> </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+
   <div class="py-5">
     <div class="container w-100 text-center">
       <div class="row">
@@ -32,13 +32,13 @@
 
 
             @foreach ($account as $acc)
-            <img class="img-fluid d-block rounded-circle mx-auto" src="{{asset($acc->Account_Profile_Picture)}}" width="100 200">
+            <img class="img-fluid d-block rounded-circle mx-auto" src="{{asset($acc->image)}}" width="100 200">
               <div class="row mt-4">
                 <div class="col-md-6">
                   <p class="lead text-right">ชื่อ :</p>
                 </div>
                 <div class="col-md-6">
-                  <p class="lead text-left">{{$acc->Account_Firstname}}  {{$acc->Account_Surname}}</p>
+                  <p class="lead text-left">{{$acc->firstname}}  {{$acc->lasName}}</p>
                 </div>
               </div>
               <div class="row">
@@ -46,7 +46,7 @@
                   <p class="lead text-right">ชื่อ Account :</p>
                 </div>
                 <div class="col-md-6">
-                  <p class="lead text-left">{{$acc->Account_Name}}</p>
+                  <p class="lead text-left">{{$acc->name}}</p>
                 </div>
               </div>
               <div class="row">
@@ -54,7 +54,7 @@
                   <p class="lead text-right">จำนวนเงิน :</p>
                 </div>
                 <div class="col-md-6">
-                  <p class="lead text-left">{{$acc->Amount}}</p>
+                  <p class="lead text-left">{{$acc->amount_user}}</p>
                 </div>
               </div>
               <div class="row">
@@ -62,20 +62,20 @@
                   <p class="lead text-right">เหตุผลที่ถูกรีพอร์ต :</p>
                 </div>
                 <div class="col-md-6">
-                  <p class="lead text-left">{{$acc->Report_Reason}}</p>
+                  {{-- <p class="lead text-left">{{$acc->Report_Reason}}</p> --}}
                 </div>
               </div>
               <div class="row">
-                @if ($acc->Account_Status === 'Ban')
+                @if ($acc->ban_status === 1)
                 <div class="col-md-4"><a class="btn btn-primary text-white" onclick="window.location='{{route('adminAccountBan')}}'" style="">Back&gt;</a></div>
                 @else
                   <div class="col-md-4"><a class="btn btn-primary text-white" onclick="window.location='{{route('adminAccountAll')}}'" style="">Back&gt;</a></div>
                 @endif
                 <div class="col-md-4"></div>
-                @if ($acc->Account_Status === 'Ban')
-                  <div class="col-md-4"><a class="btn btn-success text-white" onclick="window.location='{{route('adminUpdateBan')}}?id={{$acc->ID}}'" style="">UnBan&gt;</a></div>
+                @if ($acc->ban_status === 1)
+                  <div class="col-md-4"><a class="btn btn-success text-white" onclick="window.location='{{route('adminUpdateBan')}}?id={{$acc->id}}'" style="">UnBan&gt;</a></div>
                 @else
-                  <div class="col-md-4"><a class="btn btn-danger text-white" onclick="window.location='{{route('adminUpdateAccount')}}?id={{$acc->ID}}'" style="">Ban&gt;</a></div>
+                  <div class="col-md-4"><a class="btn btn-danger text-white" onclick="window.location='{{route('adminUpdateAccount')}}?id={{$acc->id}}'" style="">Ban&gt;</a></div>
                 @endif
               </div>
             @endforeach
@@ -91,3 +91,4 @@
 </body>
 
 </html>
+@endsection

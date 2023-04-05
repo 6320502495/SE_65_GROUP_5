@@ -1,33 +1,29 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        type="text/css">
-    <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <style>
+            .container {
+                max-width: none;
+                width: 1200px;
+            }
+
+           .row1{
+                width: 1200px;
+                display: flex;
+                justify-content: center;
+           }
+        </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="">
-        <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button"
-                data-toggle="collapse" data-target="#navbar18">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar18"> <a class="navbar-brand d-none d-md-block"
-                    href="#">
-                    <i class="fa d-inline fa-lg fa-circle"></i>
-                    <b> Divvy</b>
-                </a>
-                <ul class="navbar-nav mx-auto"></ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item"> <a class="nav-link" href="#">Log in</a> </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="#">Register</a> </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
     <div class="py-5">
         <div class="container d-flex justify-content-center">
             <form action="{{ route('campaignSaveOrganization') }}" method="POST" enctype="multipart/form-data">
@@ -41,7 +37,7 @@
                         <label class="mr-sm-2" for="Campaign">รูปโปรไฟล์:</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="Campaign_Image" name="Campaign_Image"
-                                onchange="displayProfileName()">
+                                onchange="displayProfileName()"required>
                             <label class="custom-file-label" for="Campaign_Image">Choose file</label>
                         </div>
                     </div>
@@ -134,7 +130,7 @@
                     </div>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="Campaign_Institute_Paper"
-                            name="Campaign_Institute_Paper" onchange="displayFileName()">
+                            name="Campaign_Institute_Paper" onchange="displayFileName()"required>
                         <label class="custom-file-label" for="Campaign_Institute_Paper">Choose file</label>
                     </div>
                 </div>
@@ -162,6 +158,7 @@
 </body>
 
 </html>
+@endsection
 
 <script>
     function displayFileName() {

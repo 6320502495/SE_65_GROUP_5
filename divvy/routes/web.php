@@ -9,6 +9,12 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DocumentInspectionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Top_upController;
+use App\Http\Controllers\WithdrawController;
+use App\Http\Controllers\HistoryUserController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,15 +27,11 @@ use App\Http\Controllers\DocumentInspectionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 /*peopleware home*/
-Route::get('finance/home',[HomeController::class,'financeHome'])->name('finance.home')->middleware('is_admin');
-Route::get('document/home',[HomeController::class,'documentHome'])->name('document.home')->middleware('is_admin');
-Route::get('admin/home',[HomeController::class,'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::get('/finance/home',[HomeController::class,'financeHome'])->name('finance.home')->middleware('is_admin');
+Route::get('/document/home',[HomeController::class,'documentHome'])->name('document.home')->middleware('is_admin');
+Route::get('/admin/home',[HomeController::class,'adminHome'])->name('admin.home')->middleware('is_admin');
 
 /*anonymous/**/
 Route::get('/anonymous/home', [AnonymousController::class,'home'])->name('home');
@@ -44,7 +46,7 @@ Route::get('/campaign/createIndividual', [CampaignController::class, 'createIndi
 Route::get('/campaign/createOrganization', [CampaignController::class, 'createOrganization'])->name('campaignCreateOrganization');
 Route::post('/campaign/saveIndividual', [CampaignController::class, 'saveIndividual'])->name('campaignSaveIndividual');
 Route::post('/campaign/saveOrganization', [CampaignController::class, 'saveOrganization'])->name('campaignSaveOrganization');
-Route::get('/campaign/edit/{id}', [CampaignController::class, 'edit'])->name('campaignEdit');
+Route::get('/campaign/edit', [CampaignController::class, 'edit'])->name('campaignEdit');
 Route::post('/campaign/update/{id}', [CampaignController::class, 'update'])->name('campaignUpdate');
 Route::get('/campaign/all', [CampaignController::class, 'showAll'])->name('campaignAll');
 Route::get('/campaign/{id}', [CampaignController::class, 'show'])->name('campaign');
@@ -132,7 +134,16 @@ Route::get('/admin/reject/{id}', function ($id) {
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+/*anonymous user*/
+//Route::get('/',  [AnonymousController::class, 'home'] )->name('anoHome');
+route::get('/', function ()
+{
+    return redirect('home');
+});
+
+
 
 /*user*/
 
@@ -150,4 +161,55 @@ Route::middleware([
 Route::get('/campaign/{id}', [UserController::class, 'show'])->name('campaign');
 Route::post('/campaign/donate',[UserController::class, 'userDonate'])->name('userDonate');
 
+Route::get('/user/profile', [UserController::class, 'profile'])->name('profile.show');
+Route::get('/manage',[UserController::class, 'manage'])->name('manage');
+
+Route::get('/search', [UserController::class, 'search'])->name('search');
+
+Route::post('/manage/cancel',[UserController::class, 'cancel'])->name('cancelCampaign');
+
+Route::post('/manage/close',[UserController::class, 'close'])->name('closeCampaign');
+
+Route::get('/manage/{id}', [UserController::class, 'detailShow'])->name('detail');
+
+Route::get('/noti', [UserController::class, 'noti'])->name('noti');
+
+//change-password
+#Change Password
+Route::get('/changePassword/change-password', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('update-password');
+
+//verifyForm
+Route::get('/verify/verify-form',[App\Http\Controllers\VerifyController::class, 'index'])->name('verify-form');
+Route::post('/verify/verify-form',[App\Http\Controllers\VerifyController::class, 'submitForm'])->name('submit-form');
+//adminDoc
+Route::get('/admin-formVal/confirm/{id}',[App\Http\Controllers\HomeController::class, 'confirm'])->name('adminConfirm');
+Route::post('/admin-formVal/agree',[App\Http\Controllers\HomeController::class, 'agree'])->name('adminAgree');
+
+
+
+
+
+///   การเงินต่างๆ+ประวัติการเติม //
+Route::get('/monetary', [Top_upController::class, 'Allform'])->name('monet');
+//route top_up
+Route::get('top_ups', [Top_upController::class, 'index'])->name('intTop');;
+Route::post('top_ups', [Top_upController::class, 'store']);
+Route::get('/formTop/{id_user}/{id}', [Top_upController::class, 'show']);
+Route::get('/formTopAdd/{id_user}/{id}/{sumAmount}/{amount}', [UserController::class, 'addAmount']);
+Route::get('/formTopReject/{id_user}/{id}/{amount}', [UserController::class, 'rejectT']);
+Route::get('/formTopIndex', [Top_upController::class, 'indexEmp'])->name('formT');
+//route withdraw
+Route::get('withdraw', [WithdrawController::class, 'index'])->name('WithUser');
+Route::post('withdraw', [WithdrawController::class, 'store']);
+Route::get('/formWith/{id_user}/{id}', [WithdrawController::class, 'show'])->name('showW');
+Route::get('/formWithReduce/{id_user}/{id}/{sumAmount}/{amount}', [UserController::class, 'reduceAmount']);
+Route::get('/formWithReject/{id_user}/{id}/{amount}', [UserController::class, 'rejectW']);
+Route::get('formWithIndex', [WithdrawController::class, 'indexEmp'])->name('formW');
+//route campaign
+Route::get('/formCam/{id}', [CampaignController::class, 'showC'])->name('showC');
+Route::get('/formCamAgree/{id}', [CampaignController::class, 'agreeC'])->name('agreeC');
+Route::get('formCamIndex', [CampaignController::class, 'indexEmp'])->name('formC');
+//หน้าประวัติการเติมเงิน User
+Route::get('his_money', [HistoryUserController::class, 'hisUserIndex'])->name('hisU');
 

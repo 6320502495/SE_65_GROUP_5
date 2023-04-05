@@ -4,31 +4,34 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Campaign extends Model
 {
     use HasFactory;
-    use SoftDeletes;
-    protected $table = 'campaign';
+
+    protected $table = 'campaigns';
+
+    protected $primarykey='id';
 
     protected $fillable = [
-        'Account_ID',
-        'Campaign_Name',
-        'Campaign_Details',
-        'Campaign_Tel',
-        'Campaign_Bank_ID',
-        'Campaign_Bank_Type',
-        'Campaign_Image',
-        'Campaign_Starting_Date',
-        'Campaign_Duration',
+        'id_user',
+        'campaign_name',
+        'campaign_Details',
+        'campaign_Tel',
+        'bank_ID',
+        'bank_type',
+        'campaign_Image',
         'Campaign_Category',
-        'Campaign_Donation_Goals',
-        'Campaign_Type',
-        'Campaign_Institute_Name',
-        'Campaign_Institute_Paper',
-        'Campaign_Institute_Tel',
-        'Approve_Campaign_ID',
-        'Campaign_Status',
+        'current_money',
+        'goals',
+        'campaign_type',
+        'ins_name',
+        'ins_Paper',
+        'ins_Tel',
+        'grant',
+        'status',
+        'created_at',
+        'updated_at'
     ];
 }

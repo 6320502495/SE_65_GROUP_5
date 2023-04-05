@@ -1,37 +1,33 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        type="text/css">
-    <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <style>
+            .container {
+                max-width: none;
+                width: 1200px;
+            }
+
+           .row1{
+                width: 1200px;
+                display: flex;
+                justify-content: center;
+           }
+        </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="">
-        <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button"
-                data-toggle="collapse" data-target="#navbar18">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar18"> <a class="navbar-brand d-none d-md-block"
-                    href="#">
-                    <i class="fa d-inline fa-lg fa-circle"></i>
-                    <b> Divvy</b>
-                </a>
-                <ul class="navbar-nav mx-auto"></ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item"> <a class="nav-link" href="#">Log in</a> </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="#">Register</a> </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
     <div class="py-5">
         <div class="border-top-0 m-0 py-2 pl-5 w-100" style="">
-            <div class="container">
-                <div class="row">
+            {{-- <div class="container">
+                 <div class="row">
                     <div class="col-md-3" style="">
                         <x href="javascript:;" onclick="window.location='{{ route('campaignAll') }}'">
                             <svg class="icon-arrow before">
@@ -54,12 +50,12 @@
                     </div>
                     <div class="col-md-1" style="">
                     </div>
-                    <div class="col-md-3 d-flex justify-content-center" style="">
+                     <div class="col-md-3 d-flex justify-content-center" style="">
                         <h4 class="">สร้างแคมเปญ</h4>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3" style=""></div>
+            </div> --}}
+            {{-- <div class="col-md-3" style=""></div> --}}
 
             <div class="containerCampaign">
                 <div class="box" onclick="window.location='{{ route('campaignCreateIndividual') }}'">
@@ -98,6 +94,8 @@
 </body>
 
 </html>
+
+@endsection
 
 <style>
     html,
