@@ -58,9 +58,9 @@
                 <div class="row1 w-100">
             @endif
             <div class="border rounded m-1 py-1 shadow border-light col-md-3 " style="overflow: hidden;">
-                <img class="img-fluid d-block w-75 mx-auto" src="{{$ecampaign->Campaign_Image}}" >
-                <h5 class="text-center mt-2 w-100 " style="white-space: normal; overflow: hidden; text-overflow: ellipsis;">{{$ecampaign->Campaign_Name}}</h5>
-                <p class="" style="white-space: normal; overflow: hidden; text-overflow: ellipsis; ">{{$ecampaign->Campaign_Details}}</p>
+                <img class="img-fluid d-block w-75 mx-auto" src="{{$ecampaign->campaign_Image}}" >
+                <h5 class="text-center mt-2 w-100 " style="white-space: normal; overflow: hidden; text-overflow: ellipsis;">{{$ecampaign->campaign_name}}</h5>
+                <p class="" style="white-space: normal; overflow: hidden; text-overflow: ellipsis; ">{{$ecampaign->campaign_Detail}}</p>
                 @php($total_donation=0)
                 @foreach($donation_rec as $dr)
                   @if($dr->Campaign_ID==$ecampaign->ID)

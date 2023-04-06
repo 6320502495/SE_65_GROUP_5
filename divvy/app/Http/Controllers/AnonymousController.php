@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use App\Models\Campaign;
 use App\Models\DonationRecord;
-
 
 
 class AnonymousController extends Controller
