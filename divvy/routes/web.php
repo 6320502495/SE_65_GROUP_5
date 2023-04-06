@@ -146,12 +146,6 @@ route::get('/', function ()
 
 
 /*anonymous user*/
-Route::get('/',  [AnonymousController::class, 'home'],function () {
-    return view('welcome');
-});
-
-Route::get('/campaign', [AnonymousController::class, 'home'])->name('anonymousCampaign');
-
 
 /*user*/
 
