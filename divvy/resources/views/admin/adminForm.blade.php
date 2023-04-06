@@ -27,9 +27,6 @@
                             <td>{{Carbon\Carbon::parse($row->created_at)->diffForHumans()}}</td>
                             <td><a href="{{url('/admin-formVal/confirm/'.$row->userId)}}" class="btn btn-primary">เรียกดูข้อมูล</a></td>
                         </tr>
-                        
-                            
-                        
                         @endforeach
                     </tbody>
   

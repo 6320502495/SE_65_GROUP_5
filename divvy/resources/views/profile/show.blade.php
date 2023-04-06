@@ -67,30 +67,16 @@
               <div class="table-responsive">
                 <table class="table">
                   <thead>
-                    <tr>
-                      <th>ID No.</th>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Campaign Name</th>
-                      <th>Amount</th>
-                      <th></th>
-                    </tr>
+                  <table class="table table-bordered">
+                  <tr>
+                  <th>ID No.</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Campaign Name</th>
+                  <th>Amount</th>
+                  <th width="200px">Action</th>
+                  </tr>
                   </thead>
-
-                  <tbody> 
-                   
-                    
-                    <tr>
-                      <td>1</td>
-                      <td>2/2/2023</td>
-                      <td>13.00</td>
-                      <td>Otto</td>
-                      <td>100.00</td>
-                      
-                    </tr>
-                    
-                    
-                  </tbody>
                 </table>
               </div>
             </div>
